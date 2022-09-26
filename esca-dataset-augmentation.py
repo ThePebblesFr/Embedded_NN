@@ -2,9 +2,7 @@
 
 dataset_name = "esca_dataset"
 
-# Input pameters choosen by user
-# transformation_array -> User can choose what transformations apply simply comment/uncomment (#) the row corresponding to the transformation name.
-# enable_show -> User can choose to display (True) or none (False) the transformations applied to original images. Enabling this option, the execution speed will be reduced.
+# Input pameters choosen
 
 transformation_array = [
                         "horizontalFlip",
