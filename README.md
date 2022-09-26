@@ -22,8 +22,14 @@ source envML/bin/activate
 
 deactivate                  <!-- disable the environment >
 
+<!-- if you have a policy issue with powershell or windows-->
+Set-ExecutionPolicy -Scope "CurrentUser" -ExecutionPolicy "Unrestricted" <!-- to disable the restrictions -->
+
+Set-ExecutionPolicy -Scope "CurrentUser" -ExecutionPolicy "RemoteSigned" <!-- to enable the restrictions -->
+
+
 ## install the necessary packages in your own virtual environment (this can also works on your defaut environment)
 pip install -r requirements.txt <!--or--> python -m pip install -r requirements.txt
 
-## to use our python virtual environment, it is in .gitignore
-<!-- it allows you to use our python working environment with all necessary packages -->
+## in .gitignore, the python virtual environment is ignored
+<!-- it allows you to use the python working environment with all necessary packages only on your computer -->
