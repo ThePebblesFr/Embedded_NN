@@ -1,3 +1,5 @@
 envML/
 esca_dataset/
 augmented_esca_dataset/
+augmented_esca_dataset_splited/
+h5/
