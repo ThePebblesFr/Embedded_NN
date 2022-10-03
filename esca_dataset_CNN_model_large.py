@@ -192,6 +192,8 @@ plt.plot(epochs_range, loss, label='Training Loss')
 plt.plot(epochs_range, val_loss, label='Validation Loss')
 plt.legend(loc='upper right')
 plt.title('Training and Validation Loss_'+str(img_width)+' x '+str(img_height))
+
+plt.savefig("./h5/accuracy_and_loss_model_large.png")
 plt.show()
 
 
