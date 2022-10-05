@@ -10,7 +10,7 @@
 # Table of contents
 
 
-# PREPROCESSING
+## PREPROCESSING
 
 set_samples:  ['train', 'validation', 'test'] 
 
@@ -22,9 +22,10 @@ split of dataset:
   [[7459 1865 3108]
  [7409 1852 3087]]
 
-# MODEL SMALL
+## MODEL SMALL
 
-
+Model: "sequential"
+_________________________________________________________________
  Layer (type)                Output Shape              Param #
 =================================================================
  conv2d (Conv2D)             (None, 80, 45, 32)        896
@@ -48,7 +49,7 @@ split of dataset:
  max_pooling2d_2 (MaxPooling  (None, 10, 5, 64)        0
  2D)
 
- conv2d_3 (Conv2D)           (None, 10, 5, 64)         36928     
+ conv2d_3 (Conv2D)           (None, 10, 5, 64)         36928
 
  activation_3 (Activation)   (None, 10, 5, 64)         0
 
@@ -81,9 +82,9 @@ Non-trainable params: 0
 _________________________________________________________________
 
 size of images:  80 45
-test_result:  [0.30953696370124817, 0.9761097431182861]
+test_result:  [0.5534958243370056, 0.9627118706703186]
 
-# MODEL MEDIUM
+## MODEL MEDIUM
 
 
 Model: "sequential"
@@ -118,7 +119,7 @@ _________________________________________________________________
  max_pooling2d_3 (MaxPooling  (None, 20, 11, 64)       0
  2D)
 
- conv2d_4 (Conv2D)           (None, 20, 11, 32)        18464     
+ conv2d_4 (Conv2D)           (None, 20, 11, 32)        18464
 
  activation_4 (Activation)   (None, 20, 11, 32)        0
 
@@ -144,35 +145,39 @@ Non-trainable params: 0
 _________________________________________________________________
 
 size of images:  320 180
-test_result:  [0.06172225624322891, 0.9933817386627197]
+test_result:  [0.1151105985045433, 0.9856335520744324]
 
 
 # MODEL LARGE 
 
-
-
+Not available 
 
 
 # Commands to execute
 
-## We advise you to create a virtual environment to work on the project. To do this, create an environment at the root of the project with the following commands: 
+* We advise you to create a virtual environment to work on the project. To do this, create an environment at the root of the project with the following commands: 
 
-python -m venv envML
-<!-- if your are on Windows -->
-envML/Scripts/activate      <!-- allows to use the virtual python working environment -->
-<!-- otherwise -->
+python -m venv envML *your version of python should be < 3.10, so take care to compile this line with the proper version*
+
+*if your are on Windows*
+
+envML/Scripts/Activate.ps1      <!-- allows to use the virtual python working environment -->
+
+*otherwise*
+
 source envML/bin/activate
 
-deactivate                  <!-- disable the environment >
+deactivate                  <!-- disable the environment -->
 
-<!-- if you have a policy issue with powershell or windows-->
+*if you have a policy issue with powershell or windows*
+
 Set-ExecutionPolicy -Scope "CurrentUser" -ExecutionPolicy "Unrestricted" <!-- to disable the restrictions -->
 
 Set-ExecutionPolicy -Scope "CurrentUser" -ExecutionPolicy "RemoteSigned" <!-- to enable the restrictions -->
 
 
-## install the necessary packages in your own virtual environment (this can also works on your defaut environment)
-pip install -r requirements.txt <!--or--> python -m pip install -r requirements.txt
+## Install the necessary packages in your own virtual environment (this can also works on your defaut environment)
+pip install -r requirements.txt *or* python -m pip install -r requirements.txt
 
-## in .gitignore, the python virtual environment is ignored
+#### in .gitignore, the python virtual environment is ignored
 <!-- it allows you to use the python working environment with all necessary packages only on your computer -->
