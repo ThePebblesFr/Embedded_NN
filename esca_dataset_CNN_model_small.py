@@ -25,11 +25,11 @@ test_data_dir = os.path.join(PATH_DATASET, 'test')
 
 PATH_MODELS = './h5'
  
-name_model_small = os.path.join(PATH_MODELS, 'model_small_b32.h5')
+name_model_small = os.path.join(PATH_MODELS, 'model_small_b32_v2.h5')
 
 # Parameters 
 
-batch_size = 32
+batch_size = 32  
  
 nb_train_samples = 14868
 nb_validation_samples = 3717
@@ -115,10 +115,6 @@ model_small.add(Conv2D(64, (3, 3), padding='same'))
 model_small.add(Activation('relu'))
 model_small.add(MaxPooling2D(pool_size=(2, 2)))
  
-model_small.add(Conv2D(64, (3, 3), padding='same'))
-model_small.add(Activation('relu'))
-model_small.add(MaxPooling2D(pool_size=(2, 2)))
- 
 model_small.add(Conv2D(32, (3, 3), padding='same'))
 model_small.add(Activation('relu'))
 model_small.add(MaxPooling2D(pool_size=(2, 2)))
@@ -193,7 +189,7 @@ plt.plot(epochs_range, val_loss, label='Validation Loss')
 plt.legend(loc='upper right')
 plt.title('Training and Validation Loss_'+str(img_width)+' x '+str(img_height))
 
-plt.savefig("./h5/accuracy_and_loss_model_small.png")
+plt.savefig("./h5/accuracy_and_loss_model_small_v2.png")
 plt.show()
  
  
