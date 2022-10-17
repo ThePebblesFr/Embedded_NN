@@ -1,0 +1,551 @@
+{
+    "_allocate_inputs": 4,
+    "_allocate_outputs": 4,
+    "cli_parameters": "generate --name esca_dataset_medium -m C:/Users/pierr/Downloads/model_medium_b32.h5 --type keras --compression none --verbosity 1 --workspace C:\\Users\\pierr\\AppData\\Local\\Temp\\mxAI_workspace2853660881793005379851739873104256 --output C:\\Users\\pierr\\.stm32cubemx\\network_output --allocate-inputs --allocate-outputs",
+    "cli_version": {
+        "major": 1,
+        "micro": 0,
+        "minor": 6
+    },
+    "cli_version_str": "1.6.0",
+    "compression": {
+        "factor": null,
+        "layers": {}
+    },
+    "date_time": "Mon Oct 17 15:37:44 2022",
+    "error": 0,
+    "error_str": [],
+    "exec_cmd": "generate",
+    "exec_duration": 0.0,
+    "hash": "ae581571eabbdcb124ac518e30dff09a",
+    "inputs": [
+        "input_0"
+    ],
+    "layers": [
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 691200,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        320,
+                        180,
+                        3,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 0,
+            "inputs": [],
+            "name": "input_0",
+            "original": null,
+            "type": "Input"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 49766432,
+                "n_params": 896,
+                "psize": 3584,
+                "rom_output": {
+                    "c_size": 1843200,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        160,
+                        90,
+                        32,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 0,
+            "inputs": [
+                "input_0"
+            ],
+            "name": "conv2d_conv2d",
+            "original": "Conv2D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 1843200,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 1,
+            "inputs": [
+                "conv2d_conv2d"
+            ],
+            "name": "activation",
+            "original": "Activation",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                0
+            ],
+            "extras": {
+                "n_macc": 1843200,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 3584
+            },
+            "id": 2,
+            "inputs": [
+                "activation"
+            ],
+            "name": "max_pooling2d",
+            "original": "MaxPooling2D",
+            "type": "Pool"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 132710432,
+                "n_params": 9248,
+                "psize": 36992,
+                "rom_output": {
+                    "c_size": 460800,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        80,
+                        45,
+                        32,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 3,
+            "inputs": [
+                "max_pooling2d"
+            ],
+            "name": "conv2d_1_conv2d",
+            "original": "Conv2D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 460800,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 4,
+            "inputs": [
+                "conv2d_1_conv2d"
+            ],
+            "name": "activation_1",
+            "original": "Activation",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                1
+            ],
+            "extras": {
+                "n_macc": 460800,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 36992
+            },
+            "id": 5,
+            "inputs": [
+                "activation_1"
+            ],
+            "name": "max_pooling2d_1",
+            "original": "MaxPooling2D",
+            "type": "Pool"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 66355264,
+                "n_params": 18496,
+                "psize": 73984,
+                "rom_output": {
+                    "c_size": 225280,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        40,
+                        22,
+                        64,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 6,
+            "inputs": [
+                "max_pooling2d_1"
+            ],
+            "name": "conv2d_2_conv2d",
+            "original": "Conv2D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 230400,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 7,
+            "inputs": [
+                "conv2d_2_conv2d"
+            ],
+            "name": "activation_2",
+            "original": "Activation",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                2
+            ],
+            "extras": {
+                "n_macc": 225280,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 73984
+            },
+            "id": 8,
+            "inputs": [
+                "activation_2"
+            ],
+            "name": "max_pooling2d_2",
+            "original": "MaxPooling2D",
+            "type": "Pool"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 32440384,
+                "n_params": 36928,
+                "psize": 147712,
+                "rom_output": {
+                    "c_size": 56320,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        20,
+                        11,
+                        64,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 9,
+            "inputs": [
+                "max_pooling2d_2"
+            ],
+            "name": "conv2d_3_conv2d",
+            "original": "Conv2D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 56320,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 10,
+            "inputs": [
+                "conv2d_3_conv2d"
+            ],
+            "name": "activation_3",
+            "original": "Activation",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                3
+            ],
+            "extras": {
+                "n_macc": 56320,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 147712
+            },
+            "id": 11,
+            "inputs": [
+                "activation_3"
+            ],
+            "name": "max_pooling2d_3",
+            "original": "MaxPooling2D",
+            "type": "Pool"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 4055072,
+                "n_params": 18464,
+                "psize": 73856,
+                "rom_output": {
+                    "c_size": 6400,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        10,
+                        5,
+                        32,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 12,
+            "inputs": [
+                "max_pooling2d_3"
+            ],
+            "name": "conv2d_4_conv2d",
+            "original": "Conv2D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 7040,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 13,
+            "inputs": [
+                "conv2d_4_conv2d"
+            ],
+            "name": "activation_4",
+            "original": "Activation",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                4
+            ],
+            "extras": {
+                "n_macc": 6400,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 73856
+            },
+            "id": 14,
+            "inputs": [
+                "activation_4"
+            ],
+            "name": "max_pooling2d_4",
+            "original": "MaxPooling2D",
+            "type": "Pool"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 15,
+            "inputs": [
+                "max_pooling2d_4"
+            ],
+            "name": "flatten",
+            "original": "Flatten",
+            "type": "Reshape"
+        },
+        {
+            "c_id": [
+                5
+            ],
+            "extras": {
+                "n_macc": 102464,
+                "n_params": 102464,
+                "psize": 409856,
+                "rom_output": {
+                    "c_size": 256,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        1,
+                        1,
+                        64,
+                        1
+                    ]
+                },
+                "rom_size": 409856
+            },
+            "id": 16,
+            "inputs": [
+                "flatten"
+            ],
+            "name": "dense_dense",
+            "original": "Dense",
+            "type": "Dense"
+        },
+        {
+            "c_id": [
+                6
+            ],
+            "extras": {
+                "n_macc": 64,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 256,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        1,
+                        1,
+                        64,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 17,
+            "inputs": [
+                "dense_dense"
+            ],
+            "name": "activation_5",
+            "original": "Activation",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                7
+            ],
+            "extras": {
+                "n_macc": 130,
+                "n_params": 130,
+                "psize": 520,
+                "rom_output": {
+                    "c_size": 8,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        1,
+                        1,
+                        2,
+                        1
+                    ]
+                },
+                "rom_size": 520
+            },
+            "id": 19,
+            "inputs": [
+                "activation_5"
+            ],
+            "name": "dense_1_dense",
+            "original": "Dense",
+            "type": "Dense"
+        },
+        {
+            "c_id": [
+                8
+            ],
+            "extras": {
+                "n_macc": 30,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 8,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        1,
+                        1,
+                        2,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 20,
+            "inputs": [
+                "dense_1_dense"
+            ],
+            "name": "activation_6",
+            "original": "Activation",
+            "type": "Nonlinearity"
+        }
+    ],
+    "model_files": [
+        "C:\\Users\\pierr\\Downloads\\model_medium_b32.h5"
+    ],
+    "model_n_params": 186626,
+    "model_name": "model_medium_b32",
+    "model_size": 746504,
+    "model_type": "keras",
+    "name": "esca_dataset_medium",
+    "outputs": [
+        "activation_6"
+    ],
+    "ram_io_size": [
+        691200,
+        8
+    ],
+    "ram_size": [
+        1933840,
+        1933840
+    ],
+    "report_version": 1.1,
+    "rom_cfact": 1.0,
+    "rom_heap_inspector": 2048,
+    "rom_inputs": [
+        {
+            "c_size": 691200,
+            "c_type": "float",
+            "name": "input_0"
+        }
+    ],
+    "rom_n_macc": 290620032,
+    "rom_outputs": [
+        {
+            "c_size": 8,
+            "c_type": "float",
+            "name": "activation_6"
+        }
+    ],
+    "rom_size": 746504,
+    "strategy": "heap_overlay",
+    "tools_api_version": {
+        "major": 1,
+        "micro": 0,
+        "minor": 6
+    },
+    "tools_version": {
+        "extra": "RC5",
+        "major": 7,
+        "micro": 0,
+        "minor": 2
+    },
+    "val_error": -1.0,
+    "val_error_desc": "None (None) #-1",
+    "val_metrics": []
+}

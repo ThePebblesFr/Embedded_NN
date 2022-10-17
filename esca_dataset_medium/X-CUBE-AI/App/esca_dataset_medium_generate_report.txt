@@ -1,0 +1,222 @@
+Neural Network Tools for STM32AI v1.6.0 (STM.ai v7.2.0-RC5)
+Created date          : 2022-10-17 15:37:45
+Parameters            : generate --name esca_dataset_medium -m C:/Users/pierr/Downloads/model_medium_b32.h5 --type keras --compression none --verbosity 1 --workspace C:\Users\pierr\AppData\Local\Temp\mxAI_workspace2853660881793005379851739873104256 --output C:\Users\pierr\.stm32cubemx\network_output --allocate-inputs --allocate-outputs
+
+Exec/report summary (generate)
+------------------------------------------------------------------------------------------------------------------------
+model file            : C:\Users\pierr\Downloads\model_medium_b32.h5
+type                  : keras
+c_name                : esca_dataset_medium
+compression           : none
+allocator strategy    : ['allocate-inputs', 'allocate-outputs']
+workspace dir         : C:\Users\pierr\AppData\Local\Temp\mxAI_workspace2853660881793005379851739873104256
+output dir            : C:\Users\pierr\.stm32cubemx\network_output
+model_name            : model_medium_b32
+model_hash            : ae581571eabbdcb124ac518e30dff09a
+input 1/1             : 'input_0'
+                        172800 items, 675.00 KiB, ai_float, float, (1,320,180,3), domain:activations/**default**
+output 1/1            : 'activation_6'
+                        2 items, 8 B, ai_float, float, (1,1,1,2), domain:activations/**default**
+params #              : 186,626 items (729.01 KiB)
+macc                  : 290,620,032
+weights (ro)          : 746,504 B (729.01 KiB) (1 segment)
+activations (rw)      : 1,933,840 B (1.84 MiB) (1 segment) *
+ram (total)           : 1,933,840 B (1.84 MiB) = 1,933,840 + 0 + 0
+
+(*) input/output buffers can be used from the activations buffer
+
+Model name - model_medium_b32 ['input_0'] ['activation_6']
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+id   layer (type,original)                     oshape                      param/size        macc          connected to      |   c_size              c_macc                    c_type                  
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+0    input_0 (Input, None)                     [b:None,h:320,w:180,c:3]                                                      |                                                
+     conv2d_conv2d (Conv2D, Conv2D)            [b:None,h:320,w:180,c:32]   896/3,584         49,766,432    input_0           |   -3,584(-100.0%)     -49,766,432(-100.0%)     
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1    activation (Nonlinearity, Activation)     [b:None,h:320,w:180,c:32]                     1,843,200     conv2d_conv2d     |                       -1,843,200(-100.0%)      
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2    max_pooling2d (Pool, MaxPooling2D)        [b:None,h:160,w:90,c:32]                      1,843,200     activation        |   +3,584(+100.0%)     +51,609,632(+2800.0%)     optimized_conv2d_of32[0]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3    conv2d_1_conv2d (Conv2D, Conv2D)          [b:None,h:160,w:90,c:32]    9,248/36,992      132,710,432   max_pooling2d     |   -36,992(-100.0%)    -132,710,432(-100.0%)    
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4    activation_1 (Nonlinearity, Activation)   [b:None,h:160,w:90,c:32]                      460,800       conv2d_1_conv2d   |                       -460,800(-100.0%)        
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+5    max_pooling2d_1 (Pool, MaxPooling2D)      [b:None,h:80,w:45,c:32]                       460,800       activation_1      |   +36,992(+100.0%)    +133,171,232(+28900.0%)   optimized_conv2d_of32[1]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+6    conv2d_2_conv2d (Conv2D, Conv2D)          [b:None,h:80,w:45,c:64]     18,496/73,984     66,355,264    max_pooling2d_1   |   -73,984(-100.0%)    -66,355,264(-100.0%)     
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+7    activation_2 (Nonlinearity, Activation)   [b:None,h:80,w:45,c:64]                       230,400       conv2d_2_conv2d   |                       -230,400(-100.0%)        
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+8    max_pooling2d_2 (Pool, MaxPooling2D)      [b:None,h:40,w:22,c:64]                       225,280       activation_2      |   +73,984(+100.0%)    +66,585,664(+29556.8%)    optimized_conv2d_of32[2]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+9    conv2d_3_conv2d (Conv2D, Conv2D)          [b:None,h:40,w:22,c:64]     36,928/147,712    32,440,384    max_pooling2d_2   |   -147,712(-100.0%)   -32,440,384(-100.0%)     
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+10   activation_3 (Nonlinearity, Activation)   [b:None,h:40,w:22,c:64]                       56,320        conv2d_3_conv2d   |                       -56,320(-100.0%)         
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+11   max_pooling2d_3 (Pool, MaxPooling2D)      [b:None,h:20,w:11,c:64]                       56,320        activation_3      |   +147,712(+100.0%)   +32,496,704(+57700.1%)    optimized_conv2d_of32[3]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+12   conv2d_4_conv2d (Conv2D, Conv2D)          [b:None,h:20,w:11,c:32]     18,464/73,856     4,055,072     max_pooling2d_3   |   -73,856(-100.0%)    -4,055,072(-100.0%)      
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13   activation_4 (Nonlinearity, Activation)   [b:None,h:20,w:11,c:32]                       7,040         conv2d_4_conv2d   |                       -7,040(-100.0%)          
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+14   max_pooling2d_4 (Pool, MaxPooling2D)      [b:None,h:10,w:5,c:32]                        6,400         activation_4      |   +73,856(+100.0%)    +4,062,112(+63470.5%)     optimized_conv2d_of32[4]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+15   flatten (Reshape, Flatten)                [b:None,c:1600]                                             max_pooling2d_4   |                                                
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+16   dense_dense (Dense, Dense)                [b:None,c:64]               102,464/409,856   102,464       flatten           |                                                 dense_of32[5]           
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+17   activation_5 (Nonlinearity, Activation)   [b:None,c:64]                                 64            dense_dense       |                                                 nl_of32[6]              
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+19   dense_1_dense (Dense, Dense)              [b:None,c:2]                130/520           130           activation_5      |                                                 dense_of32[7]           
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+20   activation_6 (Nonlinearity, Activation)   [b:None,c:2]                                  30            dense_1_dense     |                                                 nl_of32[o][8]           
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+model/c-model: macc=290,620,032/290,620,032  weights=746,504/746,504  activations=--/1,933,840 io=--/0
+
+
+
+Generated C-graph summary
+------------------------------------------------------------------------------------------------------------------------
+model name            : model_medium_b32
+c-name                : esca_dataset_medium
+c-node #              : 9
+c-array #             : 29
+activations size      : 1933840 (1 segments)
+weights size          : 746504 (1 segments)
+macc                  : 290620032
+inputs                : ['input_0_output']
+outputs               : ['activation_6_output']
+
+C-Arrays (29)
+-----------------------------------------------------------------------------------------------------------
+c_id   name (*_array)             item/size        domain/mem-pool           c-type        fmt     comment
+-----------------------------------------------------------------------------------------------------------
+0      input_0_output             172800/691200    activations/**default**   float         float   /input 
+1      conv2d_conv2d_output       460800/1843200   activations/**default**   float         float          
+2      conv2d_1_conv2d_output     115200/460800    activations/**default**   float         float          
+3      conv2d_2_conv2d_output     56320/225280     activations/**default**   float         float          
+4      conv2d_3_conv2d_output     14080/56320      activations/**default**   float         float          
+5      conv2d_4_conv2d_output     1600/6400        activations/**default**   float         float          
+6      dense_dense_output         64/256           activations/**default**   float         float          
+7      activation_5_output        64/256           activations/**default**   float         float          
+8      dense_1_dense_output       2/8              activations/**default**   float         float          
+9      activation_6_output        2/8              activations/**default**   float         float   /output
+10     conv2d_conv2d_weights      864/3456         weights/weights           const float   float          
+11     conv2d_conv2d_bias         32/128           weights/weights           const float   float          
+12     conv2d_1_conv2d_weights    9216/36864       weights/weights           const float   float          
+13     conv2d_1_conv2d_bias       32/128           weights/weights           const float   float          
+14     conv2d_2_conv2d_weights    18432/73728      weights/weights           const float   float          
+15     conv2d_2_conv2d_bias       64/256           weights/weights           const float   float          
+16     conv2d_3_conv2d_weights    36864/147456     weights/weights           const float   float          
+17     conv2d_3_conv2d_bias       64/256           weights/weights           const float   float          
+18     conv2d_4_conv2d_weights    18432/73728      weights/weights           const float   float          
+19     conv2d_4_conv2d_bias       32/128           weights/weights           const float   float          
+20     dense_dense_weights        102400/409600    weights/weights           const float   float          
+21     dense_dense_bias           64/256           weights/weights           const float   float          
+22     dense_1_dense_weights      128/512          weights/weights           const float   float          
+23     dense_1_dense_bias         2/8              weights/weights           const float   float          
+24     conv2d_conv2d_scratch0     11520/46080      activations/**default**   float         float          
+25     conv2d_1_conv2d_scratch0   5760/23040       activations/**default**   float         float          
+26     conv2d_2_conv2d_scratch0   5760/23040       activations/**default**   float         float          
+27     conv2d_3_conv2d_scratch0   2816/11264       activations/**default**   float         float          
+28     conv2d_4_conv2d_scratch0   704/2816         activations/**default**   float         float          
+-----------------------------------------------------------------------------------------------------------
+
+C-Layers (9)
+------------------------------------------------------------------------------------------------------------------------
+c_id   name (*_layer)    id   layer_type          macc        rom      tensors                       shape (array id)  
+------------------------------------------------------------------------------------------------------------------------
+0      conv2d_conv2d     2    optimized_conv2d    53452832    3584     I: input_0_output             (1,320,180,3) (0) 
+                                                                       S: conv2d_conv2d_scratch0                       
+                                                                       W: conv2d_conv2d_weights      (3,32,3,3) (10)   
+                                                                       W: conv2d_conv2d_bias         (1,1,1,32) (11)   
+                                                                       O: conv2d_conv2d_output       (1,160,90,32) (1) 
+------------------------------------------------------------------------------------------------------------------------
+1      conv2d_1_conv2d   5    optimized_conv2d    133632032   36992    I: conv2d_conv2d_output       (1,160,90,32) (1) 
+                                                                       S: conv2d_1_conv2d_scratch0                     
+                                                                       W: conv2d_1_conv2d_weights    (32,32,3,3) (12)  
+                                                                       W: conv2d_1_conv2d_bias       (1,1,1,32) (13)   
+                                                                       O: conv2d_1_conv2d_output     (1,80,45,32) (2)  
+------------------------------------------------------------------------------------------------------------------------
+2      conv2d_2_conv2d   8    optimized_conv2d    66810944    73984    I: conv2d_1_conv2d_output     (1,80,45,32) (2)  
+                                                                       S: conv2d_2_conv2d_scratch0                     
+                                                                       W: conv2d_2_conv2d_weights    (32,64,3,3) (14)  
+                                                                       W: conv2d_2_conv2d_bias       (1,1,1,64) (15)   
+                                                                       O: conv2d_2_conv2d_output     (1,40,22,64) (3)  
+------------------------------------------------------------------------------------------------------------------------
+3      conv2d_3_conv2d   11   optimized_conv2d    32553024    147712   I: conv2d_2_conv2d_output     (1,40,22,64) (3)  
+                                                                       S: conv2d_3_conv2d_scratch0                     
+                                                                       W: conv2d_3_conv2d_weights    (64,64,3,3) (16)  
+                                                                       W: conv2d_3_conv2d_bias       (1,1,1,64) (17)   
+                                                                       O: conv2d_3_conv2d_output     (1,20,11,64) (4)  
+------------------------------------------------------------------------------------------------------------------------
+4      conv2d_4_conv2d   14   optimized_conv2d    4068512     73856    I: conv2d_3_conv2d_output     (1,20,11,64) (4)  
+                                                                       S: conv2d_4_conv2d_scratch0                     
+                                                                       W: conv2d_4_conv2d_weights    (64,32,3,3) (18)  
+                                                                       W: conv2d_4_conv2d_bias       (1,1,1,32) (19)   
+                                                                       O: conv2d_4_conv2d_output     (1,10,5,32) (5)   
+------------------------------------------------------------------------------------------------------------------------
+5      dense_dense       16   dense               102464      409856   I: conv2d_4_conv2d_output0    (1,1,1,1600) (5)  
+                                                                       W: dense_dense_weights        (1600,1,1,64) (20)
+                                                                       W: dense_dense_bias           (1,1,1,64) (21)   
+                                                                       O: dense_dense_output         (1,1,1,64) (6)    
+------------------------------------------------------------------------------------------------------------------------
+6      activation_5      17   nl                  64          0        I: dense_dense_output         (1,1,1,64) (6)    
+                                                                       O: activation_5_output        (1,1,1,64) (7)    
+------------------------------------------------------------------------------------------------------------------------
+7      dense_1_dense     19   dense               130         520      I: activation_5_output        (1,1,1,64) (7)    
+                                                                       W: dense_1_dense_weights      (64,1,1,2) (22)   
+                                                                       W: dense_1_dense_bias         (1,1,1,2) (23)    
+                                                                       O: dense_1_dense_output       (1,1,1,2) (8)     
+------------------------------------------------------------------------------------------------------------------------
+8      activation_6      20   nl                  30          0        I: dense_1_dense_output       (1,1,1,2) (8)     
+                                                                       O: activation_6_output        (1,1,1,2) (9)     
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+Number of operations per c-layer
+-------------------------------------------------------------------------------------------------------------
+c_id    m_id   name (type)                          #op (type)                       #param (sparsity)      
+-------------------------------------------------------------------------------------------------------------
+0       2      conv2d_conv2d (optimized_conv2d)          53,452,832 (smul_f32_f32)              896 (0.0000)
+1       5      conv2d_1_conv2d (optimized_conv2d)       133,632,032 (smul_f32_f32)            9,248 (0.0000)
+2       8      conv2d_2_conv2d (optimized_conv2d)        66,810,944 (smul_f32_f32)           18,496 (0.0000)
+3       11     conv2d_3_conv2d (optimized_conv2d)        32,553,024 (smul_f32_f32)           36,928 (0.0000)
+4       14     conv2d_4_conv2d (optimized_conv2d)         4,068,512 (smul_f32_f32)           18,464 (0.0000)
+5       16     dense_dense (dense)                          102,464 (smul_f32_f32)          102,464 (0.0000)
+6       17     activation_5 (nl)                                 64 (op_f32_f32)                            
+7       19     dense_1_dense (dense)                            130 (smul_f32_f32)              130 (0.0000)
+8       20     activation_6 (nl)                                 30 (op_f32_f32)                            
+-------------------------------------------------------------------------------------------------------------
+total                                                   290,620,032                         186,626 (0.0000)
+
+  Number of operation types
+  ---------------------------------------------
+  smul_f32_f32         290,619,938      100.0%
+  op_f32_f32                    94        0.0%
+
+Complexity report (model)
+----------------------------------------------------------------------------------
+m_id   name              c_macc                    c_rom                     c_id
+----------------------------------------------------------------------------------
+2      max_pooling2d     |||||||           18.4%   |                  0.5%   [0] 
+5      max_pooling2d_1   ||||||||||||||||  46.0%   ||                 5.0%   [1] 
+8      max_pooling2d_2   ||||||||          23.0%   |||                9.9%   [2] 
+11     max_pooling2d_3   ||||              11.2%   ||||||            19.8%   [3] 
+14     max_pooling2d_4   |                  1.4%   |||                9.9%   [4] 
+16     dense_dense       |                  0.0%   ||||||||||||||||  54.9%   [5] 
+17     activation_5      |                  0.0%   |                  0.0%   [6] 
+19     dense_1_dense     |                  0.0%   |                  0.1%   [7] 
+20     activation_6      |                  0.0%   |                  0.0%   [8] 
+----------------------------------------------------------------------------------
+macc=290,620,032 weights=746,504 act=1,933,840 ram_io=0
+
+Generated files (7)
+--------------------------------------------------------------------------------------
+C:\Users\pierr\.stm32cubemx\network_output\esca_dataset_medium_config.h
+C:\Users\pierr\.stm32cubemx\network_output\esca_dataset_medium.h
+C:\Users\pierr\.stm32cubemx\network_output\esca_dataset_medium.c
+C:\Users\pierr\.stm32cubemx\network_output\esca_dataset_medium_data_params.h
+C:\Users\pierr\.stm32cubemx\network_output\esca_dataset_medium_data_params.c
+C:\Users\pierr\.stm32cubemx\network_output\esca_dataset_medium_data.h
+C:\Users\pierr\.stm32cubemx\network_output\esca_dataset_medium_data.c
