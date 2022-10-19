@@ -61,8 +61,8 @@ def gamma(img):
 new_dataset = 'augmented_esca_dataset'
 classes = ['esca', 'healthy']
 for class_tag in classes:
-  input_path = './' + dataset_name + '/' + class_tag + '/'
-  output_path = './' + new_dataset + '/' + class_tag + '/'
+  input_path = '../../data/' + dataset_name + '/' + class_tag + '/'
+  output_path = '../../data/' + new_dataset + '/' + class_tag + '/'
   print(input_path)
   print(output_path)
   # TMP

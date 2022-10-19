@@ -109,8 +109,8 @@ def synchronisation_with_target(debug=False):
                 print ("Wrong ack reponse")
 
 
-# image size (Model Medium)
-medium_size = (180, 320)
+# image size (Model Small)
+small_size = (45, 80)
 
 def send_NN_inputs_to_STM32(esca_dataset_set, ser):
     if not ser.isOpen():
@@ -127,8 +127,8 @@ def send_NN_inputs_to_STM32(esca_dataset_set, ser):
     tmp = esca_dataset_set.x_sample
     while(input_sent == False):
 
-        for i in range(medium_size[0]):
-            for j in range(medium_size[1]):
+        for i in range(small_size[0]):
+            for j in range(small_size[1]):
                 ser.write(tmp[i,j])
 
         input_sent = True
@@ -160,11 +160,11 @@ if __name__ == '__main__':
         chrono = timer("Chrono")
     
         # Model available for board's results comparaison
-        used_model = "./h5/model_medium_b32.h5"
+        used_model = "../../data/h5/model_small_b32.h5"
     
         # X_test and Y_test dataset available for inference
-        path_xtest = "./dataset/esca_dataset_xtest_model_medium2.npy"
-        path_ytest = "./dataset/esca_dataset_ytest_model_medium2.npy"
+        path_xtest = "../../data/dataset/test/esca_dataset_xtest_model_small.npy"
+        path_ytest = "../../data/dataset/test/esca_dataset_ytest_model_small.npy"
         
     
         i = 0

@@ -8,10 +8,10 @@ import pathlib
 import random
 
 # directory of dataset
-dir_original = "./augmented_esca_dataset"
+dir_original = "../../data/augmented_esca_dataset"
 
 # name of new dataset
-dir_processed = "./augmented_esca_dataset_splited"
+dir_processed = "../../data/augmented_esca_dataset_splited"
 
 # size of new images
 size = 1280, 720

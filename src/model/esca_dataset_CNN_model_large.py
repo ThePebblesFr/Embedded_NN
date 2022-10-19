@@ -17,13 +17,13 @@ import time
 
 # Directory
 
-PATH_DATASET = './augmented_esca_dataset_splited'
+PATH_DATASET = '../../data/augmented_esca_dataset_splited'
  
 train_data_dir = os.path.join(PATH_DATASET, 'train')
 validation_data_dir = os.path.join(PATH_DATASET, 'validation')
 test_data_dir = os.path.join(PATH_DATASET, 'test')
 
-PATH_MODELS = './h5'
+PATH_MODELS = '../../data/h5'
  
 name_model_large = os.path.join(PATH_MODELS, 'model_large_b32.h5')
 
@@ -193,7 +193,7 @@ plt.plot(epochs_range, val_loss, label='Validation Loss')
 plt.legend(loc='upper right')
 plt.title('Training and Validation Loss_'+str(img_width)+' x '+str(img_height))
 
-plt.savefig("./h5/accuracy_and_loss_model_large.png")
+plt.savefig("../../data/h5/accuracy_and_loss_model_large.png")
 plt.show()
 
 
