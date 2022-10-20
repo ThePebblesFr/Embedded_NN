@@ -16,6 +16,8 @@
    3. [Numpy arrays creation](#13-numpy-arrays-creation) 
    4. [Model training](#14-model-training) 
 2. [Model embedding](#2-model-embedding)  
+   1. [STM32CubeMX code generation](#21-stm32cubemx-code-generation)  
+   2. [Application implementation](#22-application-implementation)   
 3. [Test on device](#3-test-on-device)  
 4. [Adversarial attack](#4-adversarial-attack)  
   
