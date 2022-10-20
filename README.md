@@ -10,7 +10,7 @@
 # Table of contents
 
 [Introduction](#Introduction)  
-1. [Model generation](#Model%20generation)  
+1. [Model generation](#1-model-generation)  
 1. [Model embedding](#Model-embedding)  
 2. [Test on device](#Test-on-device)  
 3. [Adversarial attack](#Adversarial-attack)  
