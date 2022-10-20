@@ -1,6 +1,3 @@
-<div style="border: 1px solid red; padding: 10px">
-  Hello World
-</div>
 # Embedded NN Project
 
 |               |                                 |
