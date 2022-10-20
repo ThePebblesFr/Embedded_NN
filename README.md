@@ -227,3 +227,5 @@ The purpose of this part is to adapt for our model, an attack created on a famou
 The notebook for this attack can be found [here](/src/adversarial_fgsm/adversarial_fgsm_vineyard_small.ipynb).
 
 # Conclusion
+
+To conclude, thanks to this project, we have been through the generation, the embedding, the debugging on device and the attacking of our model. We understood how the fact that we will embed our artificial intelligence model on a board changes everything in our approach of the subject. First, the RAM space is of paramount importance and is to take under consideration when generating a model for embedded systems. Then, onboard an AI-based model on a system comes with potentiel security vulnerabilities. We have been through a type of adversarial attack. This project could be improved, and then embedded on a drone flighing over vineyards and this could give the opportunity to forecast esca disease.
