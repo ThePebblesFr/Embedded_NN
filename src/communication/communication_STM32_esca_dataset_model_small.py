@@ -100,6 +100,7 @@ def synchronisation_with_target(debug=False):
     while (sync == False):
         ser.write(b"sync")
         ret = ser.read(3)
+        print(ret)
         if (ret == b"101"): # "101" has been chosen arbitrarily
             sync = True
             if (debug):
@@ -110,7 +111,7 @@ def synchronisation_with_target(debug=False):
 
 
 # image size (Model Small)
-small_size = (45, 80)
+small_size = (45, 80, 3)
 
 def send_NN_inputs_to_STM32(esca_dataset_set, ser):
     if not ser.isOpen():
@@ -129,7 +130,8 @@ def send_NN_inputs_to_STM32(esca_dataset_set, ser):
 
         for i in range(small_size[0]):
             for j in range(small_size[1]):
-                ser.write(tmp[i,j])
+                for m in range(small_size[2]):
+                    ser.write(tmp[i,j,m])
 
         input_sent = True
 
@@ -155,16 +157,16 @@ def send_NN_inputs_to_STM32(esca_dataset_set, ser):
 if __name__ == '__main__':
 
     tf.autograph.set_verbosity(0)
-    nb_inference = 100
-    with serial.Serial("COM4", 115200, timeout=1) as ser: # COM5 for H743 (nucleo) and COM6 for F411 (Nucleo)
+    nb_inference = 1
+    with serial.Serial("COM10", 115200, timeout=1) as ser: # COM5 for H743 (nucleo) and COM6 for F411 (Nucleo)
         chrono = timer("Chrono")
     
         # Model available for board's results comparaison
-        used_model = "../../data/h5/model_small_b32.h5"
+        used_model = "./h5/model_small_b32.h5"
     
         # X_test and Y_test dataset available for inference
-        path_xtest = "../../data/dataset/test/esca_dataset_xtest_model_small.npy"
-        path_ytest = "../../data/dataset/test/esca_dataset_ytest_model_small.npy"
+        path_xtest = "esca_dataset_xtest_model_small2.npy"
+        path_ytest = "esca_dataset_ytest_model_small2.npy"
         
     
         i = 0

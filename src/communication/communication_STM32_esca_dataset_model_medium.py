@@ -160,11 +160,11 @@ if __name__ == '__main__':
         chrono = timer("Chrono")
     
         # Model available for board's results comparaison
-        used_model = "../../data/h5/model_medium_b32.h5"
+        used_model = "./h5/model_medium_b32.h5"
     
         # X_test and Y_test dataset available for inference
-        path_xtest = "../../data/dataset/test/esca_dataset_xtest_model_medium2.npy"
-        path_ytest = "../../data/dataset/test/esca_dataset_ytest_model_medium2.npy"
+        path_xtest = "./dataset/esca_dataset_xtest_model_medium2.npy"
+        path_ytest = "./dataset/esca_dataset_ytest_model_medium2.npy"
         
     
         i = 0
