@@ -97,7 +97,15 @@ By clicking on Analyze, we will tell X-Cube-AI to analyze our network so that ST
 
 ## 2.2. Application implementation
 
-In this part, we will start from an application already developed for another model: MNIST model. Hence, our application is highly inspired of this file. However, there are several changes in the **MX_X_CUBE_AI_Process** function as MNIST deals with 28x28 black and white images and our small model with 80x45 RGB images. We will receive thanks to UART communication numbers of the
+In this part, we will start from an application already developed for another model: MNIST model. Hence, our application is highly inspired of this file. However, there are several changes in the **MX_X_CUBE_AI_Process** function as MNIST deals with 28x28 black and white images and our small model with 80x45 RGB images. By the way, our pictures are represented by 80x45x3 float32, and we will send only bytes in the serial port. Hence, we chose to send bytes 4 by 4 in the serial port. This allows us to send a number of our array per communication. The input numbers recieved are gathered in a list. We chose to sort the numbers as following:
+
+```python	
+data = [data_red_0_0, data_green_0_0, data_blue_0_0, data_red_0_1, data_green_0_1, data_blue_0_1 ...]
+```
+
+We store the red value, then the blue value, then the green value of each pixel of the image and we store the first line of pixel, then the second, and so on. Once the inference has been completed, we can send the infered class to serial.
+
+Our final application code is available [here](/files/app_x-cube-ai.c).
 
 # 3. Test on device
 
