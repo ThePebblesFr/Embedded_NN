@@ -1,3 +1,23 @@
+###############################################################################################################################
+#                                                                                                                             #
+#                 |-----------------|-----------------------------------|                                                     #
+#                 |Authors          |Mickaël JALES, Pierre GARREAU      |                                                     #
+#                 |-----------------|-----------------------------------|                                                     #
+#                 |Status           |Under development                  |                                                     #
+#                 |-----------------|-----------------------------------|                                                     #
+#                 |Description      |This code allows to transform the  |                                                     #
+#                                   |photo into a numpy array to improve|                                                     #
+#                                   |the computational power during the |                                                     # 
+#                                   |training later on.                 |                                                     #
+#                                   |This code is for the small model,  |                                                     #
+#                                   |photo80x45.                        |                                                     #
+#                 |-----------------|-----------------------------------|                                                     #
+#                 |Project          |ISMIN 3A - Embedded IA             |                                                     #
+#                 |-----------------|-----------------------------------|                                                     #
+#                                                                                                                             #
+###############################################################################################################################
+
+
 import numpy as np
 from PIL import Image
 import os
@@ -19,8 +39,8 @@ train_healthy_data_dir = os.path.join(PATH_DATASET_IMAGE, 'healthy')
 
 PATH_DATASET = '../../data/dataset/train'
  
-x_train_data_dir = os.path.join(PATH_DATASET, 'esca_dataset_xtrain_model_small2.npy')
-y_train_data_dir = os.path.join(PATH_DATASET, 'esca_dataset_ytrain_model_small2.npy')
+x_train_data_dir = os.path.join(PATH_DATASET, 'esca_dataset_xtrain_model_small.npy')
+y_train_data_dir = os.path.join(PATH_DATASET, 'esca_dataset_ytrain_model_small.npy')
 
 # image size (Model Small)
 small_size = (80, 45)
@@ -45,7 +65,7 @@ for img in os.listdir(train_esca_data_dir):
         tmp = np.array(image)
         tmp = np.resize(tmp, (1, tmp.shape[0], tmp.shape[1], tmp.shape[2]))
         xtrain = np.concatenate((xtrain, tmp), axis=0)
-        ytrain = np.concatenate((ytrain,np.array([[1., 0.]])), axis=0)     # 1 is esca
+        ytrain = np.concatenate((ytrain,np.array([[1., 0.]])), axis=0)     # "position[0]" is esca
 
 print("Esca part done - train ")
 
@@ -55,7 +75,7 @@ for img in os.listdir(train_healthy_data_dir):
     tmp = np.array(image)
     tmp = np.resize(tmp, (1, tmp.shape[0], tmp.shape[1], tmp.shape[2]))
     xtrain = np.concatenate((xtrain, tmp), axis=0)
-    ytrain = np.concatenate((ytrain,np.array([[0., 1.]])), axis=0)         # 0 is healthy 
+    ytrain = np.concatenate((ytrain,np.array([[0., 1.]])), axis=0)         # "position[1]" is healthy 
 
 print("Healthy part done - train")
 
@@ -91,6 +111,7 @@ file_ytrain.close()
 
 print('Time taken for creating dataset of model small - train : {} sec\n'.format(time.time() - start))
 
+
 #################################################################################################################
 #                                                                                                               #
 #                                               TEST                                                            #
@@ -107,8 +128,8 @@ test_healthy_data_dir = os.path.join(PATH_DATASET_IMAGE, 'healthy')
 
 PATH_DATASET = '../../data/dataset/test'
  
-x_test_data_dir = os.path.join(PATH_DATASET, 'esca_dataset_xtest_model_small2.npy')
-y_test_data_dir = os.path.join(PATH_DATASET, 'esca_dataset_ytest_model_small2.npy')
+x_test_data_dir = os.path.join(PATH_DATASET, 'esca_dataset_xtest_model_small.npy')
+y_test_data_dir = os.path.join(PATH_DATASET, 'esca_dataset_ytest_model_small.npy')
 
 # image size (Model Small)
 small_size = (80, 45)
@@ -196,8 +217,8 @@ validation_healthy_data_dir = os.path.join(PATH_DATASET_IMAGE, 'healthy')
 
 PATH_DATASET = '../../data/dataset/validation'
  
-x_validation_data_dir = os.path.join(PATH_DATASET, 'esca_dataset_xvalidation_model_small2.npy')
-y_validation_data_dir = os.path.join(PATH_DATASET, 'esca_dataset_yvalidation_model_small2.npy')
+x_validation_data_dir = os.path.join(PATH_DATASET, 'esca_dataset_xvalidation_model_small.npy')
+y_validation_data_dir = os.path.join(PATH_DATASET, 'esca_dataset_yvalidation_model_small.npy')
 
 # image size (Model Small)
 small_size = (80, 45)
