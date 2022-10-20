@@ -21,7 +21,7 @@
 
 ## Project overview
 <p>In this repository, you will find a project led by Mickaël JALES and Pierre GARREAU dealing with the creation of an AI-based model for early detection and classification of esca disease in vineyards. This model is meant to be embedded on a STM32L439-Discovery board. The purpose of this work is to understand the constraints and limitations of creating an embedded artificial intelligence model.</p>
-<p>Thanks to STMicroelectronics, we have a dataset containing 1600 photographs of grapvine splited into 2 classes: esca and healthy. Notice that we have 3 different datasets in order to build 3 different models. The diffrence between these datasets is the dimensions of photographs. Hence, we are going to train 3 models - small, medium and large - and the only difference between these models is the size of the input.</p>
+<p>Thanks to STMicroelectronics, we have a [dataset containing 1600 photographs of grapvine](https://data.mendeley.com/datasets/89cnxc58kj/1) splited into 2 classes: esca and healthy. Notice that we have 3 different datasets in order to build 3 different models. The diffrence between these datasets is the dimensions of photographs. Hence, we are going to train 3 models - small, medium and large - and the only difference between these models is the size of the input.</p>
 <p>
 First, we will present the generation of the model. Then, we will look at the embedding of the model on the board and the potential issues we have been through. We will then test the small model on the board as it is the only one that is small enough to be embedded on the board. To finish, we will present an adversarial attack inspired of a simple collab notebook.
 </p>
@@ -74,6 +74,8 @@ INFO: in .gitignore, this python virtual environment we just installed is ignore
 ## 1.4. Model training
 
 # 2. Model embedding
+
+In this part, we will first generate the code thanks to the .h5 file created by our model training in the previous part and thanks to a software package in STM32CubeMX. Then, we will create the application that process our input
 
 ## 2.1. STM32CubeMX code generation
 ## 2.2. Application implementation
