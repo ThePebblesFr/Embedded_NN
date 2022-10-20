@@ -28,6 +28,7 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D
 from tensorflow.keras.layers import Activation, Dropout, Flatten, Dense
+from tensorflow.keras.callbacks import EarlyStopping
 
 
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
@@ -62,7 +63,7 @@ def plot_history(history):
     plt.xlabel('epoch')
     plt.legend(['train', 'validation'], loc='upper left')
     plt.title('Training and Validation Loss_80x45')
-    plt.savefig("../../data/h5/loss_model_small2.png")
+    plt.savefig("../../data/h5/loss_model_small.png")
     plt.show()
 
     plt.plot(history.history['accuracy'])
@@ -72,7 +73,7 @@ def plot_history(history):
     plt.xlabel('epoch')
     plt.legend(['train', 'validation'], loc='upper left')    
     plt.title('Training and Validation Accuracy_80x45')
-    plt.savefig("../../data/h5/accuracy_model_small2.png")
+    plt.savefig("../../data/h5/accuracy_model_small.png")
     plt.show()
 
 def load_mnist_data(path):
@@ -92,6 +93,14 @@ def build_model(data):
         model_small.add(Activation('relu'))
         model_small.add(MaxPooling2D(pool_size=(2, 2)))
         
+        model_small.add(Conv2D(64, (3, 3), padding='same'))
+        model_small.add(Activation('relu'))
+        model_small.add(MaxPooling2D(pool_size=(2, 2)))
+        
+        model_small.add(Conv2D(32, (3, 3), padding='same'))
+        model_small.add(Activation('relu'))
+        model_small.add(MaxPooling2D(pool_size=(2, 2)))
+        
         model_small.add(Flatten())
         model_small.add(Dense(64))
         model_small.add(Activation('relu'))
@@ -99,7 +108,7 @@ def build_model(data):
         model_small.add(Dense(2))           #because we have 2 class
         model_small.add(Activation('softmax'))
         
-        model_small.summary()
+        # model_small.summary()
                 
         return model_small
 
@@ -192,12 +201,15 @@ def train_model(dataset):
     
     chronos.tic()
     print("### START TRAINING ###")
+
+    es = EarlyStopping(monitor='val_loss', patience=10)
     
     history = model.fit(x_train, y_train,
                         batch_size=batch_size,
                         epochs=epochs,
                         validation_data=(x_validation, y_validation),
-                        shuffle=True)
+                        shuffle=True,
+                        callbacks=[es])
     
     chronos.toc()
     print("\n### STOP TRAINING ###")
