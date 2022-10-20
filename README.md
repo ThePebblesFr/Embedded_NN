@@ -10,7 +10,7 @@
 # Table of contents
 
 [Introduction](#Introduction)  
-1. Model generation  
+1. [Model generation](#Model generation)  
 2. Model embedding  
 3. Test on device  
 4. Adversarial attack  
@@ -22,11 +22,11 @@ Conclusion
 In this repository, you will find a project led by Mickaël JALES and Pierre GARREAU dealing with the creation of an AI-based model for early detection and classification of esca disease in vineyards. This model is meant to be embedded on a STM32L439-Discovery board. The purpose of this work is to understand the constraints and limitations of creating an embedded artificial intelligence model.
 Thanks to STMicroelectronics, we have a dataset containing 1600 photographs of grapvine splited into 2 classes: esca and healthy. Notice that we have 3 different datasets in order to build 3 different models. The diffrence between these datasets is the dimensions of photographs. Hence, we are going to train 3 models - small, medium and large - and the only difference between these models is the size of the input.
 
-# 1. Model generation {#generation}
-# 2. Model embedding {#embedding}
-# 3. Test on device {#test}
-# 4. Adversarial attack {#attack}
-# Conclusion {#conclu}
+# 1. Model generation
+# 2. Model embedding
+# 3. Test on device
+# 4. Adversarial attack
+# Conclusion
 
 ## PREPROCESSING
 
