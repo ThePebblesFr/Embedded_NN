@@ -11,9 +11,13 @@
 
 [Introduction](#Introduction)  
 1. [Model generation](#1-model-generation)  
-1. [Model embedding](#2-model-embedding)  
-2. [Test on device](#3-test-on-device)  
-3. [Adversarial attack](#4-adversarial-attack)  
+   1. [Data preprocessing](#11-data-preprocessing) 
+   2. [Data augmentation](#12-data-augmentation)  
+   3. [Numpy arrays creation](#13-numpy-arrays-creation) 
+   4. [Model training](#14-model-training) 
+2. [Model embedding](#2-model-embedding)  
+3. [Test on device](#3-test-on-device)  
+4. [Adversarial attack](#4-adversarial-attack)  
   
 [Conclusion](#Conclusion)  
 
