@@ -85,9 +85,13 @@ First, this step requires the *model_small_b32.h5* file obtained in the previous
 
 ![New Project CubeMX](assets/new_project_cubeMX.png)
 
-Then, by pressing Alt + O, we will open the Select Component window of the Software Pack tab. In this window, we need first to install STMicroelectronics.X-CUBE-AI package - if not already installed - and then, check the following boxes:
+Then, by pressing **Alt + O**, we will open the Select Component window of the Software Pack tab. In this window, we need first to install **STMicroelectronics.X-CUBE-AI** package - if not already installed - and then, check the following boxes:
 
 ![Software package Enabling](assets/software_package_enabling.png)
+
+In the **Pinout and Configuration** section, a new category has been added at the end of the list: **Software Packs**. Open this category and click the **+** button next to **Main**. You can now configure this section as following:
+
+![Loading h5 file](assets/loading_h5_file.png)
 
 ## 2.2. Application implementation
 
