@@ -130,7 +130,9 @@ By launching the communication script for small model, we can test our model. In
 
 # 4. Adversarial attack
 
+The purpose of this part is to adapt for our model, an attack created on a famous tensorflow model. In this attack, we will change the input image and add perturbation to it. We will then add more or less preturbation to the image and see how our model behaves.
 
+The notebook for this attack can be found [here](/src/adversarial_fgsm/adversarial_fgsm_vineyard_small.ipynb).
 
 # Conclusion
 
