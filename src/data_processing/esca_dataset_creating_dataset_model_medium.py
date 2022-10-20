@@ -1,3 +1,25 @@
+###############################################################################################################################
+#                                                                                                                             #
+#                 |-----------------|-----------------------------------|                                                     #
+#                 |Authors          |Mickaël JALES, Pierre GARREAU      |                                                     #
+#                 |-----------------|-----------------------------------|                                                     #
+#                 |Status           |Under development                  |                                                     #
+#                 |-----------------|-----------------------------------|                                                     #
+#                 |Description      |This code allows to transform the  |                                                     #
+#                                   |photo into a numpy array to improve|                                                     #
+#                                   |the computational power during the |                                                     # 
+#                                   |training later on.                 |                                                     #
+#                                   |This code is for the medium model, |                                                     #
+#                                   |photo320x180.                      |                                                     #
+#                 |-----------------|-----------------------------------|                                                     #
+#                 |Project          |ISMIN 3A - Embedded IA             |                                                     #
+#                 |-----------------|-----------------------------------|                                                     #
+#                                                                                                                             #
+###############################################################################################################################
+
+
+# Only test numpy array for medium model
+
 import numpy as np
 from PIL import Image
 import os
@@ -10,10 +32,10 @@ PATH_DATASET_IMAGE = '../../data/augmented_esca_dataset_splited/test'
 test_esca_data_dir = os.path.join(PATH_DATASET_IMAGE, 'esca')
 test_healthy_data_dir = os.path.join(PATH_DATASET_IMAGE, 'healthy')
 
-PATH_DATASET = '../../data/dataset'
+PATH_DATASET = '../../data/dataset/test'
  
-x_test_data_dir = os.path.join(PATH_DATASET, 'esca_dataset_xtest_model_medium2.npy')
-y_test_data_dir = os.path.join(PATH_DATASET, 'esca_dataset_ytest_model_medium2.npy')
+x_test_data_dir = os.path.join(PATH_DATASET, 'esca_dataset_xtest_model_medium.npy')
+y_test_data_dir = os.path.join(PATH_DATASET, 'esca_dataset_ytest_model_medium.npy')
 
 # image size (Model Medium)
 medium_size = (180, 320)
