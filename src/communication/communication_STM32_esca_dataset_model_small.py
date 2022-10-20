@@ -1,9 +1,21 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Feb 22 16:46:13 2021
+###############################################################################################################################
+#                                                                                                                             #
+#                 |-----------------|-----------------------------------|                                                     #
+#                 |Authors          |Mickaël JALES, Pierre GARREAU      |                                                     #
+#                 |-----------------|-----------------------------------|                                                     #
+#                 |Status           |Under development                  |                                                     #
+#                 |-----------------|-----------------------------------|                                                     #
+#                 |Description      |This code allows to send imputs to |                                                     # 
+#                                   |the STM32 board where the model is |                                                     # 
+#                                   |already installed.                 |                                                     #
+#                                   |This code is for the small model,  |                                                     #
+#                                   |photo80x45.                        |                                                     #
+#                 |-----------------|-----------------------------------|                                                     #
+#                 |Project          |ISMIN 3A - Embedded IA             |                                                     #
+#                 |-----------------|-----------------------------------|                                                     #
+#                                                                                                                             #
+###############################################################################################################################
 
-@author: RJ264980
-"""
 
 import sys, os, array, time
 import numpy as np
@@ -159,15 +171,15 @@ if __name__ == '__main__':
 
     tf.autograph.set_verbosity(0)
     nb_inference = 1
-    with serial.Serial("COM10", 115200, timeout=1) as ser: # COM5 for H743 (nucleo) and COM6 for F411 (Nucleo)
+    with serial.Serial("COM10", 115200, timeout=1) as ser:      # ! You need to put your port COM corresponding
         chrono = timer("Chrono")
     
         # Model available for board's results comparaison
-        used_model = "./h5/model_small_b32.h5"
+        used_model = "../../data/h5/model_small_b32.h5"
     
         # X_test and Y_test dataset available for inference
-        path_xtest = "esca_dataset_xtest_model_small2.npy"
-        path_ytest = "esca_dataset_ytest_model_small2.npy"
+        path_xtest = "../../data/dataset/test/esca_dataset_xtest_model_small.npy"
+        path_ytest = "../../data/dataset/test/esca_dataset_ytest_model_small.npy"
         
     
         i = 0
