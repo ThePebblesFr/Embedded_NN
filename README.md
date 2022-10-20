@@ -164,7 +164,7 @@ test_result :  [loss, accuracy ] = [0.1356278102982017, 0.9836290187362791]
 Except for a spike at the 13rd *EPOCH*, our model does not overfit too much. <br>
 And so this is the model we put on the STM32 board.
 
-This small model script is available [here](/src/model/esca_dataset_creating_dataset_model_medium.py) and the [small model](/src/data_processing/esca_dataset_CNN_model_small_numpy.py).
+This small model script is available [here](/src/model/esca_dataset_CNN_model_small_numpy.py).
 
 # 2. Model embedding
 
