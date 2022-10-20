@@ -9,7 +9,7 @@
 
 # Table of contents
 
-<link to="#intro">Introduction</link>  
+<a href="#intro">Introduction</a>  
 <link to="#generation">Model generation</link>
 <link to="#embedding">Model embedding</link>
 <link to="#test">Test on device</link>
