@@ -19,6 +19,8 @@
    1. [STM32CubeMX code generation](#21-stm32cubemx-code-generation)  
    2. [Application implementation](#22-application-implementation)   
 3. [Test on device](#3-test-on-device)  
+   1. [Communication scripts](#32-communication-scripts)   
+   2. [Example with small model](#32-example-with-small-model)  
 4. [Adversarial attack](#4-adversarial-attack)  
   
 [Conclusion](#Conclusion)  
