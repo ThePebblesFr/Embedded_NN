@@ -79,13 +79,13 @@ INFO: in .gitignore, this python virtual environment we just installed is ignore
 
 # 1. Model generation
 
-In this part, we will first increase the size of the dataset by modifying the grapvine photos, then we will pre-process the data in order to train our model.  With our dataset, we can make three models: *large*, *medium* and *small* where the difference is the size of the colored photos and therefore the number of data.
+In this part, we will first increase the size of the dataset by modifying the grapvine photos, then we will pre-process the data in order to train our model.  With our dataset, we can make three models: *large*, *medium* and *small* where the difference is the size of the colored photographs and therefore the number of data.
 
 ## 1.1. Data augmentation
 
-First, you have to download the pictures of diseased vines on the [following link](https://data.mendeley.com/datasets/89cnxc58kj/1). You have the pictures divided in 2 categories, the vines that have the disease *esca* and the vines *healthy*.
+First, you have to download the pictures of diseased vines on the [following link](https://data.mendeley.com/datasets/89cnxc58kj/1). You have the pictures divided in 2 categories, the grapvines that have the disease *esca* and the vines *healthy*.
 
-Once you upload these photos, you have 1770 photos of vines, 888 *esca* and 882 *healthy*. However, this is not enough to train a neural network. To increase this dataset, we are going to make some modifications on the photos to have more data.<br>
+Once you uploaded these photographs, you have 1770 photographs of grapvines, 888 *esca* and 882 *healthy*. However, this is not enough to train a neural network. To increase this dataset, we are going to make some modifications on the photos to have more data.<br>
 For that, we will use the library *tensorflow.keras.preprocessing.image* to apply transformations to the images. For example, blur the image, turn it upside down, saturate the photo ... <br>
 There are 14 transformations which increases our dataset to 24780 photos and we have now more data for our neural network.
 
@@ -93,7 +93,7 @@ This augmentation script is available [here](/src/data_processing/esca_dataset_a
 
 ## 1.2. Data preprocessing
 
-Now that we have a dataset with enough data, we will separate it into three sub-datasets, *train*, *test* and *validation*. The *train* dataset contains **60%** of the original dataset or 14868 photos, the *test* dataset contains **25%** of the dataset or 6195 photos and finally the *validation* dataset contains **15%** of the dataset or 3717 photos.
+Now that we have a dataset with enough data, we will separate it into three sub-datasets, *train*, *test* and *validation*. The *train* dataset contains **60%** of the original dataset or 14868 photos, the *test* dataset contains **25%** of the dataset or 6195 photographs and finally the *validation* dataset contains **15%** of the dataset or 3717 photographs.
 
 ```python
 number of images for class:  
@@ -105,14 +105,14 @@ split of dataset:
  ```
 
 
-The fact of dividing the dataset in three allows us to train the model on the *train dataset*, to validate this model with the *validation dataset* and finally, we can test our model on the *test dataset*. <br>
+The fact of spliting the dataset in three allows us to train the model on the *train dataset*, to validate this model on the *validation dataset* and finally, we can test our model on the *test dataset*. <br>
 Indeed, to train a good model, it is necessary that this model does not keep in memory photos that it has already seen.
 
 This pre-processing script is available [here](/src/data_processing/esca_dataset_preprocessing.py).
 
 ## 1.3. First model training
 
-To train the model, we use the *tensorflow* and *keras* libraries. As said before, we will make three models: *large*, *medium* et *small* where only the size changes.
+To train the model, we use the *tensorflow* and *keras* libraries. As mentionned before, we will make three models: *large*, *medium* et *small* where only the size changes.
 
 The *large* model was far too big and the estimated time to compile the model was **70h**. For obvious reasons, we did not make the *large* model. (find the script [here](/src/model/esca_dataset_CNN_model_large.py))
 
@@ -126,7 +126,7 @@ size of images:  320 180
 test_result :  [loss, accuracy ] = [0.1151105985045433, 0.9856335520744324]
 ```
 
-The model shows no signs of overfitting and has a confidence of **98%**. (find the script [here](/src/model/esca_dataset_CNN_model_medium.py)) However, the problem is the size. Indeed, the *.h5* file is too big for the STM32 board and the board's RAM does not support the model. We had to use the *small* model. 
+The model shows no signs of overfitting and has a confidence of **98%**. (find the script [here](/src/model/esca_dataset_CNN_model_medium.py)) However, the problem is the size. Indeed, the *.h5* file is too large for the STM32 board and the board's RAM does not support the model. We had to use the *small* model. 
 
 Finally, there is the *small* model.
 
