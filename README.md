@@ -10,12 +10,12 @@
 # Table of contents
 
 [Introduction](#Introduction)  
-[1. Model generation](#Model generation)  
-1. Model embedding  
-2. Test on device  
-3. Adversarial attack  
+1. [Model generation](#Model-generation)  
+1. [Model embedding](#Model-embedding)  
+2. [Test on device](#Test-on-device)  
+3. [Adversarial attack](#Adversarial-attack)  
   
-Conclusion  
+[Conclusion](#Conclusion)  
 
 # Introduction
 
