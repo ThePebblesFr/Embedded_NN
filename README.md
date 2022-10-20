@@ -9,7 +9,7 @@
 
 # Table of contents
 
-Introduction  
+[Introduction](#Introduction)  
 1. Model generation  
 2. Model embedding  
 3. Test on device  
