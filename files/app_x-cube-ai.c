@@ -54,8 +54,8 @@
 #include "app_x-cube-ai.h"
 #include "main.h"
 #include "ai_datatypes_defines.h"
-#include "esca_dataset_medium.h"
-#include "esca_dataset_medium_data.h"
+#include "esca_dataset_small.h"
+#include "esca_dataset_small_data.h"
 
 /* USER CODE BEGIN includes */
  extern UART_HandleTypeDef huart2;
@@ -63,24 +63,24 @@
 
 /* IO buffers ----------------------------------------------------------------*/
 
-#if !defined(AI_ESCA_DATASET_MEDIUM_INPUTS_IN_ACTIVATIONS)
-AI_ALIGNED(4) ai_i8 data_in_1[AI_ESCA_DATASET_MEDIUM_IN_1_SIZE_BYTES];
-ai_i8* data_ins[AI_ESCA_DATASET_MEDIUM_IN_NUM] = {
+#if !defined(AI_ESCA_DATASET_SMALL_INPUTS_IN_ACTIVATIONS)
+AI_ALIGNED(4) ai_i8 data_in_1[AI_ESCA_DATASET_SMALL_IN_1_SIZE_BYTES];
+ai_i8* data_ins[AI_ESCA_DATASET_SMALL_IN_NUM] = {
 data_in_1
 };
 #else
-ai_i8* data_ins[AI_ESCA_DATASET_MEDIUM_IN_NUM] = {
+ai_i8* data_ins[AI_ESCA_DATASET_SMALL_IN_NUM] = {
 NULL
 };
 #endif
 
-#if !defined(AI_ESCA_DATASET_MEDIUM_OUTPUTS_IN_ACTIVATIONS)
-AI_ALIGNED(4) ai_i8 data_out_1[AI_ESCA_DATASET_MEDIUM_OUT_1_SIZE_BYTES];
-ai_i8* data_outs[AI_ESCA_DATASET_MEDIUM_OUT_NUM] = {
+#if !defined(AI_ESCA_DATASET_SMALL_OUTPUTS_IN_ACTIVATIONS)
+AI_ALIGNED(4) ai_i8 data_out_1[AI_ESCA_DATASET_SMALL_OUT_1_SIZE_BYTES];
+ai_i8* data_outs[AI_ESCA_DATASET_SMALL_OUT_NUM] = {
 data_out_1
 };
 #else
-ai_i8* data_outs[AI_ESCA_DATASET_MEDIUM_OUT_NUM] = {
+ai_i8* data_outs[AI_ESCA_DATASET_SMALL_OUT_NUM] = {
 NULL
 };
 #endif
@@ -88,13 +88,13 @@ NULL
 /* Activations buffers -------------------------------------------------------*/
 
 AI_ALIGNED(32)
-static uint8_t pool0[AI_ESCA_DATASET_MEDIUM_DATA_ACTIVATION_1_SIZE];
+static uint8_t pool0[AI_ESCA_DATASET_SMALL_DATA_ACTIVATION_1_SIZE];
 
 ai_handle data_activations0[] = {pool0};
 
 /* AI objects ----------------------------------------------------------------*/
 
-static ai_handle esca_dataset_medium = AI_HANDLE_NULL;
+static ai_handle esca_dataset_small = AI_HANDLE_NULL;
 
 static ai_buffer* ai_input;
 static ai_buffer* ai_output;
@@ -117,37 +117,37 @@ static int ai_boostrap(ai_handle *act_addr)
   ai_error err;
 
   /* Create and initialize an instance of the model */
-  err = ai_esca_dataset_medium_create_and_init(&esca_dataset_medium, act_addr, NULL);
+  err = ai_esca_dataset_small_create_and_init(&esca_dataset_small, act_addr, NULL);
   if (err.type != AI_ERROR_NONE) {
-    ai_log_err(err, "ai_esca_dataset_medium_create_and_init");
+    ai_log_err(err, "ai_esca_dataset_small_create_and_init");
     return -1;
   }
 
-  ai_input = ai_esca_dataset_medium_inputs_get(esca_dataset_medium, NULL);
-  ai_output = ai_esca_dataset_medium_outputs_get(esca_dataset_medium, NULL);
+  ai_input = ai_esca_dataset_small_inputs_get(esca_dataset_small, NULL);
+  ai_output = ai_esca_dataset_small_outputs_get(esca_dataset_small, NULL);
 
-#if defined(AI_ESCA_DATASET_MEDIUM_INPUTS_IN_ACTIVATIONS)
+#if defined(AI_ESCA_DATASET_SMALL_INPUTS_IN_ACTIVATIONS)
   /*  In the case where "--allocate-inputs" option is used, memory buffer can be
    *  used from the activations buffer. This is not mandatory.
    */
-  for (int idx=0; idx < AI_ESCA_DATASET_MEDIUM_IN_NUM; idx++) {
+  for (int idx=0; idx < AI_ESCA_DATASET_SMALL_IN_NUM; idx++) {
 	data_ins[idx] = ai_input[idx].data;
   }
 #else
-  for (int idx=0; idx < AI_ESCA_DATASET_MEDIUM_IN_NUM; idx++) {
+  for (int idx=0; idx < AI_ESCA_DATASET_SMALL_IN_NUM; idx++) {
 	  ai_input[idx].data = data_ins[idx];
   }
 #endif
 
-#if defined(AI_ESCA_DATASET_MEDIUM_OUTPUTS_IN_ACTIVATIONS)
+#if defined(AI_ESCA_DATASET_SMALL_OUTPUTS_IN_ACTIVATIONS)
   /*  In the case where "--allocate-outputs" option is used, memory buffer can be
    *  used from the activations buffer. This is no mandatory.
    */
-  for (int idx=0; idx < AI_ESCA_DATASET_MEDIUM_OUT_NUM; idx++) {
+  for (int idx=0; idx < AI_ESCA_DATASET_SMALL_OUT_NUM; idx++) {
 	data_outs[idx] = ai_output[idx].data;
   }
 #else
-  for (int idx=0; idx < AI_ESCA_DATASET_MEDIUM_OUT_NUM; idx++) {
+  for (int idx=0; idx < AI_ESCA_DATASET_SMALL_OUT_NUM; idx++) {
 	ai_output[idx].data = data_outs[idx];
   }
 #endif
@@ -159,10 +159,10 @@ static int ai_run(void)
 {
   ai_i32 batch;
 
-  batch = ai_esca_dataset_medium_run(esca_dataset_medium, ai_input, ai_output);
+  batch = ai_esca_dataset_small_run(esca_dataset_small, ai_input, ai_output);
   if (batch != 1) {
-    ai_log_err(ai_esca_dataset_medium_get_error(esca_dataset_medium),
-        "ai_esca_dataset_medium_run");
+    ai_log_err(ai_esca_dataset_small_get_error(esca_dataset_small),
+        "ai_esca_dataset_small_run");
     return -1;
   }
 
@@ -210,9 +210,9 @@ int post_process(ai_i8* data[])
 	unsigned char output_to_be_tx[3] = "010";
 	uint8_t *output = data; // don't care about the signed value of ai_i8...
 
-	float prob_classes[10] = {0};
+	float prob_classes[2] = {0};
 	int i,j;
-	for (i = 0; i < 10; i++){
+	for (i = 0; i < 2; i++){
 		uint8_t tmp[4] = {0};
 		for (j=0; j < 4; j++){
 			tmp[j] = output[i*4+j];
@@ -221,7 +221,7 @@ int post_process(ai_i8* data[])
 	}
 
 	HAL_UART_Transmit(&huart2, (uint8_t *) output_to_be_tx, sizeof(output_to_be_tx),100);
-	for(i = 0; i < 10; i++){
+	for(i = 0; i < 2; i++){
 		uint8_t tmp[4] = {0};
 		for (j=0; j < 4; j++){
 			tmp[j] = output[i*4+j];
@@ -253,15 +253,15 @@ void MX_X_CUBE_AI_Process(void)
 
   printf("TEMPLATE - run - main loop\r\n");
 
-  if (esca_dataset_medium) {
+  if (esca_dataset_small) {
 
-#if defined(AI_ESCA_DATASET_MEDIUM_INPUTS_IN_ACTIVATIONS)
+#if defined(AI_ESCA_DATASET_SMALL_INPUTS_IN_ACTIVATIONS)
 	  in_data = ai_input[0].data;
 #else
 	  in_data = in_data_s;
 #endif
 
-#if defined(AI_ESCA_DATASET_MEDIUM_OUTPUTS_IN_ACTIVATIONS)
+#if defined(AI_ESCA_DATASET_SMALL_OUTPUTS_IN_ACTIVATIONS)
 	  out_data = ai_output[0].data;
 #else
 	  out_data = out_data_s;
