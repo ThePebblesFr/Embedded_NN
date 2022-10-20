@@ -76,9 +76,15 @@ INFO: in .gitignore, this python virtual environment we just installed is ignore
 
 # 2. Model embedding
 
-In this part, we will first generate the code thanks to the .h5 file created by our model training in the previous part and thanks to a software package in STM32CubeMX. Then, we will create the application that process our input
+In this part, we will first generate the code thanks to the .h5 file created by our model training in the previous part and thanks to a software package in STM32CubeMX. Then, we will create the application that process our input and infer the class of it.  
+Because only the small model is small enough to fit on the board, we will work with the small dataset and the small model.
 
 ## 2.1. STM32CubeMX code generation
+
+First, this step requires the *model_small_b32.h5* file obtained in the previous part. Then, we can open STM32CubeMX and create a new project - we called it *esca_dataset_small*. We will first choose our board in the **Board Selector** section by typing **STM32L4R9I-DISCO** and initialize the peripharials with their default mode.
+
+![New Project CubeMX](assets/new_project_cubeMX.png)
+
 ## 2.2. Application implementation
 
 # 3. Test on device
