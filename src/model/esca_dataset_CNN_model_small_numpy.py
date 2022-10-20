@@ -137,10 +137,10 @@ class dataset:
         self.input_shape = self.x_train.shape[1:]
         
         
-        # Transform label to one hot vector
-        self.y_train        = tf.keras.utils.to_categorical(self.y_train, 2)
-        self.y_validation   = tf.keras.utils.to_categorical(self.y_validation, 2)
-        self.y_test         = tf.keras.utils.to_categorical(self.y_test, 2)
+        # # Transform label to one hot vector
+        # self.y_train        = tf.keras.utils.to_categorical(self.y_train, 2)
+        # self.y_validation   = tf.keras.utils.to_categorical(self.y_validation, 2)
+        # self.y_test         = tf.keras.utils.to_categorical(self.y_test, 2)
         
         self.nb_epochs  = 50
         self.batch_size = 32
@@ -156,18 +156,18 @@ class dataset:
         print("\tBatch size:        "+str(self.batch_size))
         print("\n")
         
-    def MLP_input_data_preparation(self):
-        self.input_shape    = np.prod(self.x_train.shape[1:])
-        self.x_train        = self.x_train.reshape(self.x_train.shape[0], self.input_shape)
-        self.x_validation   = self.x_validation.reshape(self.x_validation.shape[0], self.input_shape)
-        self.x_test         = self.x_test.reshape(self.x_test.shape[0], self.input_shape)
+    # def MLP_input_data_preparation(self):
+    #     self.input_shape    = np.prod(self.x_train.shape[1:])
+    #     self.x_train        = self.x_train.reshape(self.x_train.shape[0], self.input_shape)
+    #     self.x_validation   = self.x_validation.reshape(self.x_validation.shape[0], self.input_shape)
+    #     self.x_test         = self.x_test.reshape(self.x_test.shape[0], self.input_shape)
         
-        print ("\n")
-        print ("New dimensions after MLP reshape:\n")
-        print ("Train Dataset      --> x_train:         " + str(np.shape(self.x_train))         + "    y_train:         " + str(np.shape(self.y_train)))
-        print ("Validation Dataset --> x_validation:    " + str(np.shape(self.x_validation))    + "    y_validation:    " + str(np.shape(self.y_validation)))
-        print ("Testing Dataset    --> x_test:          " + str(np.shape(self.x_test))          + "    y_test:          " + str(np.shape(self.y_test)))
-        print ("\n")
+    #     print ("\n")
+    #     print ("New dimensions after MLP reshape:\n")
+    #     print ("Train Dataset      --> x_train:         " + str(np.shape(self.x_train))         + "    y_train:         " + str(np.shape(self.y_train)))
+    #     print ("Validation Dataset --> x_validation:    " + str(np.shape(self.x_validation))    + "    y_validation:    " + str(np.shape(self.y_validation)))
+    #     print ("Testing Dataset    --> x_test:          " + str(np.shape(self.x_test))          + "    y_test:          " + str(np.shape(self.y_test)))
+    #     print ("\n")
     
         
 
