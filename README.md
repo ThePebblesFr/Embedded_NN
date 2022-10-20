@@ -19,7 +19,6 @@
 
 # Introduction
 
-
 ## Project overview
 <p>In this repository, you will find a project led by Mickaël JALES and Pierre GARREAU dealing with the creation of an AI-based model for early detection and classification of esca disease in vineyards. This model is meant to be embedded on a STM32L439-Discovery board. The purpose of this work is to understand the constraints and limitations of creating an embedded artificial intelligence model.</p>
 <p>Thanks to STMicroelectronics, we have a dataset containing 1600 photographs of grapvine splited into 2 classes: esca and healthy. Notice that we have 3 different datasets in order to build 3 different models. The diffrence between these datasets is the dimensions of photographs. Hence, we are going to train 3 models - small, medium and large - and the only difference between these models is the size of the input.</p>
@@ -68,8 +67,22 @@ pip install -r requirements.txt
 INFO: in .gitignore, this python virtual environment we just installed is ignored.
 
 # 1. Model generation
+
+## 1.1. Data preprocessing
+## 1.2. Data augmentation
+## 1.3. Numpy arrays creation
+## 1.4. Model training
+
 # 2. Model embedding
+
+## 2.1. STM32CubeMX code generation
+## 2.2. Application implementation
+
 # 3. Test on device
+
+## 3.1. Communication scripts
+## 3.2. Example with small model
+
 # 4. Adversarial attack
 # Conclusion
 
