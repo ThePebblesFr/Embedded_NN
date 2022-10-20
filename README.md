@@ -97,6 +97,8 @@ By clicking on Analyze, we will tell X-Cube-AI to analyze our network so that ST
 
 ## 2.2. Application implementation
 
+In this part, we will start from an application already developed for another model: MNIST model. Hence, our application is highly inspired of this file. However, there are several changes in the **MX_X_CUBE_AI_Process** function as MNIST deals with 28x28 black and white images and our small model with 80x45 RGB images. We will receive thanks to UART communication numbers of the
+
 # 3. Test on device
 
 ## 3.1. Communication scripts
