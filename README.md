@@ -126,7 +126,12 @@ This communication script is available for the [medium model](/src/communication
 
 ## 3.2. Example with small model
 
+By launching the communication script for small model, we can test our model. In this script, you need to make sure that the right COM port is being opened - line 173. You also need to make sure that specified paths to numpy arrays for *x_test* and *y_test* are properly configured - line 180 and 181.
+
 # 4. Adversarial attack
+
+
+
 # Conclusion
 
 ## PREPROCESSING
