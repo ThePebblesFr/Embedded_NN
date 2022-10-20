@@ -116,7 +116,7 @@ In this step, we will use a template of a communication script created for the M
 In this part, we will send an input image coming from the test folder created during the model generation. We need first to open the serial port to communicate with the board. Then, we will load our model thanks to the .h5 file, we will also load 2 numpy arrays containing testing data: *x_test* data and *y_test* arrays.
 
 Then, for each inference - in our example, there will be only one inference -, we will:  
-- pick a random input in the input numpy array *x_test*
+- pick a random input in the numpy array input *x_test*
 - start the synchronization with the board by sending a flag in the serial port.
 - once the board synchronized itself with our communication script, start sending the numbers of the input image, one by one.
 - wait for the board to send in the serial port the flag meaning it had completed the inference.
