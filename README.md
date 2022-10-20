@@ -19,8 +19,40 @@
 
 # Introduction
 
+
+## Project overview
 In this repository, you will find a project led by Mickaël JALES and Pierre GARREAU dealing with the creation of an AI-based model for early detection and classification of esca disease in vineyards. This model is meant to be embedded on a STM32L439-Discovery board. The purpose of this work is to understand the constraints and limitations of creating an embedded artificial intelligence model.
 Thanks to STMicroelectronics, we have a dataset containing 1600 photographs of grapvine splited into 2 classes: esca and healthy. Notice that we have 3 different datasets in order to build 3 different models. The diffrence between these datasets is the dimensions of photographs. Hence, we are going to train 3 models - small, medium and large - and the only difference between these models is the size of the input.
+
+## Requirements for python environment
+
+In order to work in this project, we advise you to create a virtual environment to work on the project. To do this, create an environment at the root of the project with the following commands: 
+
+```python -m venv envML```  
+*your version of python should be < 3.10, so take care to compile this line with the proper version*
+
+*if your are on Windows*
+
+envML/Scripts/Activate.ps1      <!-- allows to use the virtual python working environment -->
+
+*otherwise*
+
+source envML/bin/activate
+
+deactivate                  <!-- disable the environment -->
+
+*if you have a policy issue with powershell or windows*
+
+Set-ExecutionPolicy -Scope "CurrentUser" -ExecutionPolicy "Unrestricted" <!-- to disable the restrictions -->
+
+Set-ExecutionPolicy -Scope "CurrentUser" -ExecutionPolicy "RemoteSigned" <!-- to enable the restrictions -->
+
+
+### Install the necessary packages in your own virtual environment (this can also works on your defaut environment)
+pip install -r requirements.txt *or* python -m pip install -r requirements.txt
+
+#### in .gitignore, the python virtual environment is ignored
+<!-- it allows you to use the python working environment with all necessary packages only on your computer -->
 
 # 1. Model generation
 # 2. Model embedding
@@ -291,32 +323,3 @@ Total Ram:       1938036 B (1.85 MiB)
     Input:       691200 B (675.00 KiB included in Activations) 
     Output:      8 B (included in Activations) 
 Done
-
-# Commands to execute
-
-* We advise you to create a virtual environment to work on the project. To do this, create an environment at the root of the project with the following commands: 
-
-python -m venv envML *your version of python should be < 3.10, so take care to compile this line with the proper version*
-
-*if your are on Windows*
-
-envML/Scripts/Activate.ps1      <!-- allows to use the virtual python working environment -->
-
-*otherwise*
-
-source envML/bin/activate
-
-deactivate                  <!-- disable the environment -->
-
-*if you have a policy issue with powershell or windows*
-
-Set-ExecutionPolicy -Scope "CurrentUser" -ExecutionPolicy "Unrestricted" <!-- to disable the restrictions -->
-
-Set-ExecutionPolicy -Scope "CurrentUser" -ExecutionPolicy "RemoteSigned" <!-- to enable the restrictions -->
-
-
-## Install the necessary packages in your own virtual environment (this can also works on your defaut environment)
-pip install -r requirements.txt *or* python -m pip install -r requirements.txt
-
-#### in .gitignore, the python virtual environment is ignored
-<!-- it allows you to use the python working environment with all necessary packages only on your computer -->
