@@ -4,15 +4,15 @@
 |---------------|---------------------------------|
 |Authors        |Mickaël JALES, Pierre GARREAU    |
 |Status         |Under development                |
-|Description    |Embedded Neural Network project dealing with grapevine leaves dataset for early detection and classification of esca disease in vineyards. This code is meant to be executed on STM32L439 board |
+|Description    |Embedded Neural Network project dealing with grapvine leaves dataset for early detection and classification of esca disease in vineyards. This code is meant to be executed on STM32L439 board |
 |Project        |ISMIN 3A - Embedded IA           |
 
 # Table of contents
 
 [Introduction](#Introduction)  
 1. [Model generation](#1-model-generation)  
-   1. [Data preprocessing](#11-data-preprocessing) 
-   2. [Data augmentation](#12-data-augmentation)  
+   1. [Data augmentation](#11-data-augmentation) 
+   2. [Data preprocessing](#12-data-preprocessing)  
    3. [Numpy arrays creation](#13-numpy-arrays-creation) 
    4. [Model training](#14-model-training) 
 2. [Model embedding](#2-model-embedding)  
@@ -30,7 +30,7 @@
 ## Project overview
 In this repository, you will find a project led by Mickaël JALES and Pierre GARREAU dealing with the creation of an AI-based model for early detection and classification of esca disease in vineyards. This model is meant to be embedded on a STM32L439-Discovery board. The purpose of this work is to understand the constraints and limitations of creating an embedded artificial intelligence model.  
 
-Thanks to STMicroelectronics, we have a [dataset containing 1600 photographs of grapvine](https://data.mendeley.com/datasets/89cnxc58kj/1) splited into 2 classes: esca and healthy. Notice that we have 3 different datasets in order to build 3 different models. The diffrence between these datasets is the dimensions of photographs. Hence, we are going to train 3 models - small, medium and large - and the only difference between these models is the size of the input.  
+Thanks to STMicroelectronics, we have a [dataset containing 1770 photographs of grapvine](https://data.mendeley.com/datasets/89cnxc58kj/1) splited into 2 classes: esca and healthy. Notice that we have 3 different datasets in order to build 3 different models. The diffrence between these datasets is the dimensions of photographs. Hence, we are going to train 3 models - small, medium and large - and the only difference between these models is the size of the input.  
 
 First, we will present the generation of the model. Then, we will look at the embedding of the model on the board and the potential issues we have been through. We will then test the small model on the board as it is the only one that is small enough to be embedded on the board. To finish, we will present an adversarial attack inspired of a simple collab notebook.
 
@@ -75,10 +75,26 @@ pip install -r requirements.txt
 
 INFO: in .gitignore, this python virtual environment we just installed is ignored.
 
+
 # 1. Model generation
 
-## 1.1. Data preprocessing
-## 1.2. Data augmentation
+In this part, we will first increase the size of the dataset by modifying the grapvine photos, then we will pre-process the data in order to train our model.  With our dataset, we can make three models: large, medium and small where the difference is the size of the colored photos and therefore the number of data.
+
+## 1.1. Data augmentation
+
+First, you have to download the pictures of diseased vines on the [following link](https://data.mendeley.com/datasets/89cnxc58kj/1). You have the pictures divided in 2 categories, the vines that have the disease *esca* and the vines *healthy*.
+
+Once you upload these photos, you have 1770 photos of vines, 888 *esca* and 882 *healthy*. However, this is not enough to train a neural network. To increase this dataset, we are going to make some modifications on the photos to have more data.<br>
+For that, we will use the library *tensorflow.keras.preprocessing.image* to apply transformations to the images. For example, blur the image, turn it upside down, saturate the photo ... <br>
+There are 14 transformations which increases our dataset to 24780 photos and we have now more data for our neural network.
+
+## 1.2. Data preprocessing
+
+Now that we have a dataset with enough data, we will separate it into three sub-datasets, *train*, *test* and *validation*. The *train* dataset contains 60% of the original dataset or 14868 photos, the *test* dataset contains 25% of the dataset or 6195 photos and finally the *validation* dataset contains 15% of the dataset or 3717 photos.
+
+The fact of dividing the dataset in three allows us to train the model on the *train dataset*, to validate this model with the *validation dataset* and finally, we can test our model on the *test dataset*. <br>
+Indeed, to train a good model, it is necessary that this model does not keep in memory photos that it has already seen.
+
 ## 1.3. Numpy arrays creation
 ## 1.4. Model training
 
