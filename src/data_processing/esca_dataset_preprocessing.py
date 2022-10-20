@@ -1,3 +1,21 @@
+###############################################################################################################################
+#                                                                                                                             #
+#                 |-----------------|-----------------------------------|                                                     #
+#                 |Authors          |Mickaël JALES, Pierre GARREAU      |                                                     #
+#                 |-----------------|-----------------------------------|                                                     #
+#                 |Status           |Under development                  |                                                     #
+#                 |-----------------|-----------------------------------|                                                     #
+#                 |Description      |This code allows to separate the   |                                                     #
+#                                   |augmented dataset into three       |                                                     #
+#                                   |datasets: train, test and          |                                                     #
+#                                   |validation.                        |                                                     #
+#                 |-----------------|-----------------------------------|                                                     #
+#                 |Project          |ISMIN 3A - Embedded IA             |                                                     #
+#                 |-----------------|-----------------------------------|                                                     #
+#                                                                                                                             #
+###############################################################################################################################
+
+
 from PIL import Image
 import numpy as np
 from numpy import random
@@ -16,9 +34,10 @@ dir_processed = "../../data/augmented_esca_dataset_splited"
 # size of new images
 size = 1280, 720
 
-#extraction of dataset information
+# extraction of dataset information
 data_dir = pathlib.Path(dir_original)
 
+# name of the differents dataset
 set_samples = ['train', 'validation', 'test']
 print("set_samples: ", set_samples, "\n")
 
@@ -31,13 +50,10 @@ print("number of images for class: ", N_IMAGES, "\n")
 N_samples = np.array([(int(np.around(n*60/100)), int(np.around(n*15/100)), int(np.around(n*25/100))) for n in N_IMAGES])	# number of images for set (train,validation,test)
 print("split of dataset: \n ", N_samples, "\n")
 
-# Preprocessing Dataset
-# Create the new dataset
-# Split Dataset								(also resize and rotate)
 
+## Preprocessing Dataset
 
-
-# create the dataset folder			***********************************
+# create the dataset folder			
 os.makedirs(dir_processed)
 
 for set_tag in set_samples:
@@ -48,30 +64,30 @@ for set_tag in set_samples:
 
 
 
-# SPLIT DATASET (and resize)		*************************************
+# SPLIT DATASET (and resize)		
 print("Split dataset.....")
 
 i=0
-j=0
-k=0
-for class_name in CLASS_NAMES:														# "j" cambia con il tipo di pianta [0,3]
+j=0         # "j" changes with the type of plant [0,3]
+k=0         # "k" changes with train, validation, and test
+for class_name in CLASS_NAMES:														
 	
     print("class name: ", class_name)
 
-    contatore_samples = 0
+    counter_samples = 0         # "counter" resets to zero at each field 'train' 'validation' 'test'
     k=0
 
     array = sorted(os.listdir(dir_original + '/' + class_name))
     #random.shuffle(array)
 
-    for image_name in array:	                                       	# "contatore" si azzera ad ogni campo 'train' 'validation' 'test'
+    for image_name in array:	                                       	
 	
         print("image: ", i)
         i=i+1
 
-        if contatore_samples==N_samples[j][k]:										    # "k" cambia con train, validation, e test
+        if counter_samples==N_samples[j][k]:										    
             k+=1
-            contatore_samples=0
+            counter_samples=0
 
 
         img=Image.open(dir_original +'/'+class_name+'/'+image_name)
@@ -90,6 +106,6 @@ for class_name in CLASS_NAMES:														# "j" cambia con il tipo di pianta [
             img.thumbnail(size)
             img.save(dir_processed+'/'+set_samples[k]+'/'+class_name+'/'+image_name)
 
-        contatore_samples+=1	
+        counter_samples+=1	
 
     j+=1
