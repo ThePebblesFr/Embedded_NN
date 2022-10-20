@@ -110,6 +110,11 @@ Our final application code is available [here](/files/app_x-cube-ai.c).
 # 3. Test on device
 
 ## 3.1. Communication scripts
+
+In this step, we will use a template of a communication script created for the MNIST model, and we will adapt the communication script the same way we adapted the application code in the previous part.
+
+In this part, we will send an input image coming from the test folder created during the model generation. We need first to open the serial port to communicate with the board. Then, we will load our model thanks to the .h5 file, we will also load 2 numpy arrays containing training data: *x_test* data and *y_test* arrays.
+
 ## 3.2. Example with small model
 
 # 4. Adversarial attack
