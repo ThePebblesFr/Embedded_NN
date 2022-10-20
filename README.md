@@ -150,6 +150,8 @@ We also tried it on the *medium* model to see if it reduced the size of the mode
 
 This creation numpy arrays script are available for the [medium model](/src/data_processing/esca_dataset_creating_dataset_model_medium.py) and the [small model](/src/data_processing/esca_dataset_creating_dataset_model_small.py).
 
+INFO: By the way, the size of dataset of the *xtest* and the *ytest* is too large for github so we did not put the files on git. To generate them, you need to compile in this order : [esca_dataset_augmentation](/src/data_processing/esca_dataset_augmentation.py), [esca_dataset_preprocessing](/src/data_processing/esca_dataset_preprocessing.py) and [esca_dataset_creating_dataset_model_small](/src/data_processing/esca_dataset_creating_dataset_model_small.py) for the small model or [esca_dataset_creating_dataset_model_medium](/src/data_processing/esca_dataset_creating_dataset_model_medium.py) for the medium model.
+
 ## 1.5. Second model training
 
 So now we tried to change the model to see if we could overcome the overfitting and we obtain this :
