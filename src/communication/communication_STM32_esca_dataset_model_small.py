@@ -160,7 +160,6 @@ def send_NN_inputs_to_STM32(esca_dataset_set, ser):
 
     for i in range(0, 2):
         predi_values = ser.read(4)
-        print(predi_values)
         esca_dataset_set.received_output[0][i] = struct.unpack('f', predi_values)[0]
 
     esca_dataset_set.categorize_received_output()
@@ -175,11 +174,11 @@ if __name__ == '__main__':
         chrono = timer("Chrono")
     
         # Model available for board's results comparaison
-        used_model = "../../data/h5/model_small_b32.h5"
+        used_model = "data/h5/model_small_b32.h5"
     
         # X_test and Y_test dataset available for inference
-        path_xtest = "../../data/dataset/test/esca_dataset_xtest_model_small.npy"
-        path_ytest = "../../data/dataset/test/esca_dataset_ytest_model_small.npy"
+        path_xtest = "data/dataset/test/esca_dataset_xtest_model_small2.npy"
+        path_ytest = "data/dataset/test/esca_dataset_ytest_model_small2.npy"
         
     
         i = 0
