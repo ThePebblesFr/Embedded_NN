@@ -1,12 +1,20 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Mar 15 12:01:00 2021
+###############################################################################################################################
+#                                                                                                                             #
+#                 |-----------------|-----------------------------------|                                                     #
+#                 |Authors          |Mickaël JALES, Pierre GARREAU      |                                                     #
+#                 |-----------------|-----------------------------------|                                                     #
+#                 |Status           |Under development                  |                                                     #
+#                 |-----------------|-----------------------------------|                                                     #
+#                 |Description      |This code train the model from the |                                                     # 
+#                                   |pre-processed numpy arrays.        |                                                     #
+#                                   |This code is for the small model,  |                                                     #
+#                                   |photo80x45.                        |                                                     #
+#                 |-----------------|-----------------------------------|                                                     #
+#                 |Project          |ISMIN 3A - Embedded IA             |                                                     #
+#                 |-----------------|-----------------------------------|                                                     #
+#                                                                                                                             #
+###############################################################################################################################
 
-Python code in which a CNN is designed and trained to recognise MNIST dataset elements
-The trained model is created to be implemented on STM32 board (STM32F411)
-
-@author: RJ264980
-"""
 
 import sys, os, array, time
 import numpy as np
@@ -54,7 +62,7 @@ def plot_history(history):
     plt.xlabel('epoch')
     plt.legend(['train', 'validation'], loc='upper left')
     plt.title('Training and Validation Loss_80x45')
-    plt.savefig("../../data/h5/loss_model_small.png")
+    plt.savefig("../../data/h5/loss_model_small2.png")
     plt.show()
 
     plt.plot(history.history['accuracy'])
@@ -64,7 +72,7 @@ def plot_history(history):
     plt.xlabel('epoch')
     plt.legend(['train', 'validation'], loc='upper left')    
     plt.title('Training and Validation Accuracy_80x45')
-    plt.savefig("../../data/h5/accuracy_model_small.png")
+    plt.savefig("../../data/h5/accuracy_model_small2.png")
     plt.show()
 
 def load_mnist_data(path):
@@ -75,49 +83,41 @@ def load_mnist_data(path):
 
 def build_model(data):
 
-        # model_small = Sequential()
-        # model_small.add(Conv2D(32, (3, 3), padding='same', input_shape=data.input_shape))
-        # model_small.add(Activation('relu'))
-        # model_small.add(MaxPooling2D(pool_size=(2, 2)))
+        model_small = Sequential()
+        model_small.add(Conv2D(32, (3, 3), padding='same', input_shape=data.input_shape))
+        model_small.add(Activation('relu'))
+        model_small.add(MaxPooling2D(pool_size=(2, 2)))
         
-        # model_small.add(Conv2D(32, (3, 3), padding='same'))
-        # model_small.add(Activation('relu'))
-        # model_small.add(MaxPooling2D(pool_size=(2, 2)))
+        model_small.add(Conv2D(32, (3, 3), padding='same'))
+        model_small.add(Activation('relu'))
+        model_small.add(MaxPooling2D(pool_size=(2, 2)))
         
-        # model_small.add(Conv2D(64, (3, 3), padding='same'))
-        # model_small.add(Activation('relu'))
-        # model_small.add(MaxPooling2D(pool_size=(2, 2)))
+        model_small.add(Flatten())
+        model_small.add(Dense(64))
+        model_small.add(Activation('relu'))
+        model_small.add(Dropout(0.5))
+        model_small.add(Dense(2))           #because we have 2 class
+        model_small.add(Activation('softmax'))
         
-        # model_small.add(Conv2D(32, (3, 3), padding='same'))
-        # model_small.add(Activation('relu'))
-        # model_small.add(MaxPooling2D(pool_size=(2, 2)))
-        
-        # model_small.add(Flatten())
-        # model_small.add(Dense(64))
-        # model_small.add(Activation('relu'))
-        # model_small.add(Dropout(0.5))
-        # model_small.add(Dense(2))           #because we have 2 class
-        # model_small.add(Activation('softmax'))
-        
-        # model_small.summary()
+        model_small.summary()
                 
-        # return model_small
+        return model_small
 
-        # Small CNN for MNIST recognition
-        model = models.Sequential()
+        # # Small CNN for MNIST recognition
+        # model = models.Sequential()
         
-        # Dense layer
-        model.add(layers.Conv2D(2, (3, 3), padding='same', activation='relu', input_shape=data.input_shape))
-        model.add(layers.MaxPooling2D((2, 2), padding='valid'))
-        model.add(layers.Flatten())
+        # # Dense layer
+        # model.add(layers.Conv2D(2, (3, 3), padding='same', activation='relu', input_shape=data.input_shape))
+        # model.add(layers.MaxPooling2D((2, 2), padding='valid'))
+        # model.add(layers.Flatten())
         
-        # Dense layer
-        model.add(layers.Dense(16, activation='relu'))
+        # # Dense layer
+        # model.add(layers.Dense(16, activation='relu'))
         
-        # Output layer
-        model.add(layers.Dense(2, activation='softmax'))
+        # # Output layer
+        # model.add(layers.Dense(2, activation='softmax'))
                 
-        return model
+        # return model
     
 class dataset:
     def __init__(self):
@@ -134,17 +134,6 @@ class dataset:
         self.x_test         = self.x_test / 255.0
         self.x_validation   = self.x_validation / 255.0
         
-        # Reshape of x_train et x_test
-        #if tf.keras.datasets.mnist.image_data_format == 'channel_first':
-        #self.x_train = self.x_train.reshape((self.x_train.shape[0], 1, self.x_train.shape[1], self.x_train.shape[2]))
-        #self.x_validation   = self.x_validation.reshape((self.x_validation.shape[0], 1, self.x_validation.shape[1], self.x_validation.shape[2]))
-        #self.x_test  = self.x_test.reshape((self.x_test.shape[0], 1, self.x_test.shape[1], self.x_test.shape[2]))
-        #self.input_shape = (1, 28, 28)
-        
-        #else:
-        # self.x_train = self.x_train.reshape((self.x_train.shape[0], self.x_train.shape[1], self.x_train.shape[2], 1))
-        # self.x_validation   = self.x_validation.reshape((self.x_validation.shape[0], self.x_validation.shape[1], self.x_validation.shape[2], 1))
-        # self.x_test  = self.x_test.reshape((self.x_test.shape[0], self.x_test.shape[1], self.x_test.shape[2], 1))
         self.input_shape = self.x_train.shape[1:]
         
         
@@ -241,8 +230,8 @@ def test_model(dataset, trained_model, save_pred=False, trust_indicator=False):
     
     chronos.toc()
     print("")
-    print('***** Test loss:    ', test_score[0])
-    print('***** Test accuracy:', test_score[1])
+    print('***** Test loss:         ', test_score[0])
+    print('***** Test accuracy:     ', test_score[1])
     print("")
     
     if trust_indicator:
@@ -256,8 +245,8 @@ def test_model(dataset, trained_model, save_pred=False, trust_indicator=False):
         trust_min  = np.amin(trust_diff)
         
         print("")
-        print("***** Trust difference mean:", trust_mean)
-        print("***** Minimal difference   :", trust_min)
+        print("***** Trust difference mean  :", trust_mean)
+        print("***** Minimal difference     :", trust_min)
         print("")
 
 
@@ -276,8 +265,8 @@ if __name__ == '__main__':
     plot_history(history)
 
     # Saving model and testing datasets
-    PATH_MODELS = './h5'
+    PATH_MODELS = '../../data/h5'
  
-    name_model_small = os.path.join(PATH_MODELS, 'model_small_b32_v2.h5')
+    name_model_small = os.path.join(PATH_MODELS, 'model_small_b32.h5')
 
     trained_model.save(name_model_small)
