@@ -93,6 +93,8 @@ In the **Pinout and Configuration** section, a new category has been added at th
 
 ![Loading h5 file](assets/loading_h5_file.png)
 
+By clicking on Analyze, we will tell X-Cube-AI to analyze our network so that STM32CubeMX can generate our code afterwards. Once the analyze is complete, we can go to **Project Manager** and configure the name of our project, and set **STM32CubeIDE** as our default IDE. Then, we can generate the code and start working on the application.
+
 ## 2.2. Application implementation
 
 # 3. Test on device
