@@ -28,7 +28,9 @@ Thanks to STMicroelectronics, we have a dataset containing 1600 photographs of g
 
 In order to work in this project, we advise you to create a virtual environment to work on the project. To do this, create an environment at the root of the project with the following commands: 
 
-```python -m venv envML```  
+```python
+python -m venv envML
+```  
 *your version of python should be < 3.10, so take care to compile this line with the proper version*
 
 *if your are on Windows*
