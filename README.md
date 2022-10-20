@@ -11,9 +11,9 @@
 
 [Introduction](#Introduction)  
 1. [Model generation](#1-model-generation)  
-1. [Model embedding](#Model-embedding)  
-2. [Test on device](#Test-on-device)  
-3. [Adversarial attack](#Adversarial-attack)  
+1. [Model embedding](#2-model-embedding)  
+2. [Test on device](#3-test-on-device)  
+3. [Adversarial attack](#4-adversarial-attack)  
   
 [Conclusion](#Conclusion)  
 
