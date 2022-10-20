@@ -89,6 +89,8 @@ Once you upload these photos, you have 1770 photos of vines, 888 *esca* and 882 
 For that, we will use the library *tensorflow.keras.preprocessing.image* to apply transformations to the images. For example, blur the image, turn it upside down, saturate the photo ... <br>
 There are 14 transformations which increases our dataset to 24780 photos and we have now more data for our neural network.
 
+This augmentation script is available [here](/src/data_processing/esca_dataset_augmentation.py).
+
 ## 1.2. Data preprocessing
 
 Now that we have a dataset with enough data, we will separate it into three sub-datasets, *train*, *test* and *validation*. The *train* dataset contains **60%** of the original dataset or 14868 photos, the *test* dataset contains **25%** of the dataset or 6195 photos and finally the *validation* dataset contains **15%** of the dataset or 3717 photos.
@@ -106,11 +108,13 @@ split of dataset:
 The fact of dividing the dataset in three allows us to train the model on the *train dataset*, to validate this model with the *validation dataset* and finally, we can test our model on the *test dataset*. <br>
 Indeed, to train a good model, it is necessary that this model does not keep in memory photos that it has already seen.
 
+This pre-processing script is available [here](/src/data_processing/esca_dataset_preprocessing.py).
+
 ## 1.3. First model training
 
 To train the model, we use the *tensorflow* and *keras* libraries. As said before, we will make three models: *large*, *medium* et *small* where only the size changes.
 
-The *large* model was far too big and the estimated time to compile the model was **70h**. For obvious reasons, we did not make the *large* model.
+The *large* model was far too big and the estimated time to compile the model was **70h**. For obvious reasons, we did not make the *large* model. (find the script [here](/src/model/esca_dataset_CNN_model_large.py))
 
 The *medium* model still took us **6h to 8h**. <br>
 After training the model, we get these results for *accuracy* and *loss* of *train* and *validation*: 
@@ -122,7 +126,7 @@ size of images:  320 180
 test_result :  [loss, accuracy ] = [0.1151105985045433, 0.9856335520744324]
 ```
 
-The model shows no signs of overfitting and has a confidence of **98%**. However, the problem is the size. Indeed, the *.h5* file is too big for the STM32 board and the board's RAM does not support the model. We had to use the *small* model. 
+The model shows no signs of overfitting and has a confidence of **98%**. (find the script [here](/src/model/esca_dataset_CNN_model_medium.py)) However, the problem is the size. Indeed, the *.h5* file is too big for the STM32 board and the board's RAM does not support the model. We had to use the *small* model. 
 
 Finally, there is the *small* model.
 
@@ -135,12 +139,16 @@ test_result :  [loss, accuracy ] = [0.198756780076789, 0.9745625091896284]
 
 We notice an overffiting due to too many aprameters. To be able to change these parameters and obtain a new model quickly, we decided to transform the photos into a numpy array to train the model. 
 
+The script for the small model with photos is [here](/src/model/esca_dataset_CNN_model_small.py))
+
 ## 1.4. Numpy arrays creation
 
 Training the model on the photos directly took a lot of computing power. <br>
 To overcome this, we decided to transform the photos into a numpy array and train the model directly on the numpy array.
 
 We also tried it on the *medium* model to see if it reduced the size of the model but it didn't do anything.
+
+This creation numpy arrays script are available for the [medium model](/src/data_processing/esca_dataset_creating_dataset_model_medium.py) and the [small model](/src/data_processing/esca_dataset_creating_dataset_model_small.py).
 
 ## 1.5. Second model training
 
@@ -155,6 +163,8 @@ test_result :  [loss, accuracy ] = [0.1356278102982017, 0.9836290187362791]
 
 Except for a spike at the 13rd *EPOCH*, our model does not overfit too much. <br>
 And so this is the model we put on the STM32 board.
+
+This small model script is available [here](/src/model/esca_dataset_creating_dataset_model_medium.py) and the [small model](/src/data_processing/esca_dataset_CNN_model_small_numpy.py).
 
 # 2. Model embedding
 
