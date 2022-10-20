@@ -33,28 +33,36 @@ python -m venv envML
 ```  
 *your version of python should be < 3.10, so take care to compile this line with the proper version*
 
-*if your are on Windows*
+Then, if your are on Windows, enter the following command:
+```python
+envML/Scripts/Activate.ps1      # allows to use the virtual python working environment
+``` 
 
-envML/Scripts/Activate.ps1      <!-- allows to use the virtual python working environment -->
-
-*otherwise*
-
+Otherwise, enter the following command:
+```python
 source envML/bin/activate
+``` 
 
-deactivate                  <!-- disable the environment -->
+If you want to desactivate the virtual python environment, enter the following command:
+```python
+deactivate                  # disable the environment
+```
 
-*if you have a policy issue with powershell or windows*
+WARINING: you might have a policy issue with powershell on windows, use the following commands to either enable or disable the restrictions:
 
-Set-ExecutionPolicy -Scope "CurrentUser" -ExecutionPolicy "Unrestricted" <!-- to disable the restrictions -->
+```python
+Set-ExecutionPolicy -Scope "CurrentUser" -ExecutionPolicy "Unrestricted" # to disable the restrictions
 
-Set-ExecutionPolicy -Scope "CurrentUser" -ExecutionPolicy "RemoteSigned" <!-- to enable the restrictions -->
+Set-ExecutionPolicy -Scope "CurrentUser" -ExecutionPolicy "RemoteSigned" # to enable the restrictions
+```
 
+Then, you can install the necessary packages in your own virtual environment using the following command:
 
-### Install the necessary packages in your own virtual environment (this can also works on your defaut environment)
-pip install -r requirements.txt *or* python -m pip install -r requirements.txt
+```python
+pip install -r requirements.txt
+```
 
-#### in .gitignore, the python virtual environment is ignored
-<!-- it allows you to use the python working environment with all necessary packages only on your computer -->
+INFO: in .igtignore, this python virtual environment we just installed is ignored.
 
 # 1. Model generation
 # 2. Model embedding
